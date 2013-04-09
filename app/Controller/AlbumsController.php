@@ -110,7 +110,7 @@ class AlbumsController extends AppController{
       throw new MethodNotAllowedEception();
     }
 
-    if($this->Album->IncludePost->updateAll(array("IncludePost.status"=>0,"Album.status"=>0),array("IncludePost.album_id"=>$id)) &&
+    if($this->Album->IncludePost->updateAll(array("IncludePost.status"=>0),array("IncludePost.album_id"=>$id)) &&
       $this->Album->updateAll(array("Album.status"=>0),array("Album.id"=>$id)) ) {
 
       $this->Session->setFlash(__('Your albums and all its related photo have been deleted'));
@@ -118,4 +118,23 @@ class AlbumsController extends AppController{
     }
   }
 
+  /**
+   * Manage album in the website
+   * @return [type] [description]
+   */
+  public function manage(){
+    if($this->request->data!=null){
+      $search = '%'.$this->request->data['Album']['searchstring'].'%';
+    } else {
+      $search ='%%';
+    }
+    
+    $this->paginate = array (
+      'conditions' => array('Album.status' => 1),
+      'limit' => 10,
+      'order' => array('Album.created'=>'DESC')
+      );
+
+    $this->set('albums',$this->paginate());
+  }
 }

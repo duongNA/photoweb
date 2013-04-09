@@ -47,15 +47,21 @@ class CommentsController extends AppController{
    * @param [type] $id [description]
    */
   public function add(){
+    if($this->request->is('get')) {
+      // throw new MethodNotAllowedException();
+      $this->redirect(array('controller'=>'posts','action'=>'index'));
+    }
+
     if($this->request->is('post'))
     {
 
       $this->request->data['Comment']['user_id']=$this->Auth->user('id');
+      $this->request->data['Comment']['reported']=0;
+      $this->request->data['Comment']['user_name']=$this->Auth->user('username');
       $this->request->data['Comment']['status']=1;
       $this->Comment->save($this->request->data);
       $this->redirect(array('controller'=>'posts','action'=>'view',$this->request->data['Comment']['post_id']));
     }
-
   }
 
   /**
@@ -100,9 +106,29 @@ class CommentsController extends AppController{
     $this->request->data['Comment']['reported'] = 1;
 
     if($this->Comment->save($this->request->data)){
-      $this->Session->setFlash(__('Comment have been deleted'));
+      $this->Session->setFlash(__('Comment have been reported'));
       $this->redirect(array('controller'=>'posts','action'=>'index'));
     }
   }
 
+  /**
+   * Manage comments in the website
+   * Status: Ongoing
+   * @return [type] [description]
+   */
+  public function manage(){
+    if($this->request->data!=null){
+      $search = '%'.$this->request->data['Comment']['searchstring'].'%';
+    } else {
+      $search ='%%';
+    }
+
+    $this->paginate = array (
+      'conditions' => array('Comment.status' => 1),
+      'limit' => 10,
+      'order' => array('Comment.created'=>'DESC')
+      );
+
+    $this->set('comments',$this->paginate());
+  }
 }

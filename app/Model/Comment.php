@@ -1,6 +1,15 @@
 <?php
 class Comment extends AppModel {
 
+  // public $validates = array (
+  //   'comment' => array (
+  //     'required' => array(
+  //       'rule'=>array('notEmpty'),
+  //       'message' => 'This field is required'
+  //       )
+  //     )
+  //   );
+
   /**
    * Declare model association
    * @var array

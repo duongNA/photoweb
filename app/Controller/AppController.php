@@ -63,11 +63,11 @@ class AppController extends Controller {
    */
   public function isAuthorized($user) {
 
-    //Check if user has role admin or not
+    //Check if user has grand access to all pages
     if(isset($user['role']) && $user['role']=='admin')
       return true;
 
-    //Else deny
+    //Else deny access
     return false;
   }
 }

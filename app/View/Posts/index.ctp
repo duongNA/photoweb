@@ -1,3 +1,5 @@
+<!--DOCTYPE -->
+
 <?php
 ?>
 <table>
@@ -45,4 +47,6 @@
 <?php endforeach ?>
 
 </table>
-<?php echo $this->Paginator->next('Next Page');?>
+<?php if($this->Paginator->hasPage(2))
+        echo $this->Paginator->next('Next Page');
+?>

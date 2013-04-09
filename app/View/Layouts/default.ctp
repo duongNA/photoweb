@@ -39,28 +39,43 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <body>
 	<div id="container">
 		<div id="header">
-			<!-- <h1><?php echo $this->Html->link($cakeDescription, 'http://cakephp.org'); ?></h1> -->
-			<ul>
+			<div class="top-menu" id="main-menu">
+			<ul >
 				<li>
-						<h1><?php echo $this->Html->link('Home',array('controller'=>'posts','action'=>'index'));?></h1>
+						<?php echo $this->Html->link('Home',array('controller'=>'posts','action'=>'index'));?>
 				</li>
 				<li>
-						<h1><?php echo $this->Html->link('Hot',array('controller'=>'posts','action'=>'hot'));?></h1>
+						<?php echo $this->Html->link('Hot',array('controller'=>'posts','action'=>'hot'));?>
 				</li>
 				<li>
-						<h1><?php if(!$this->Session->check('Auth.User')) {
-							echo $this->Html->link('Log in',array('controller'=>'users','action'=>'login'));
-							echo "<br>";
-							echo $this->Html->link('Register',array('controller'=>'users','action'=>'add'));
-						} else {
-							echo "Hello: ";
-							echo $this->Html->link($this->Session->read('Auth.User.username'), array('controller'=>'users','action'=>'view',$this->Session->read('Auth.User.id')));
-							echo "<br>";
-							echo $this->Html->link('Log out',array('controller'=>'users','action'=>'logout'));
+						<?php echo $this->Html->link('Add new post',array('controller'=>'posts','action'=>'add'));?>
+				</li>
+				<?php
+					if($this->Session->check('Auth.User')){
+						if($this->Session->read('Auth.User.role')=='admin'){
+							echo "<li>".$this->Html->link("Manage users",array('controller'=>'users','action'=>'manage'))."</li>";
+							echo "<li>".$this->Html->link("Manage posts",array('controller'=>'posts','action'=>'manage'))."</li>";
+							echo "<li>".$this->Html->link("Manage albums",array('controller'=>'albums','action'=>'manage'))."</li>";
+							echo "<li>".$this->Html->link("Manage comments",array('controller'=>'comments','action'=>'manage'))."</li>";
 						}
-						?></h1>
-				</li>
+					}
+				?>
+			</ul>	
+		</div>
+
+		<div class="top-menu" id="user-menu">	
+			<ul >
+				<?php if(!$this->Session->check('Auth.User')) {
+					echo "<li>".$this->Html->link('Log in',array('controller'=>'users','action'=>'login'))."</li>";
+					echo "<li>".$this->Html->link('Register',array('controller'=>'users','action'=>'add'))."</li>";
+				} else {
+					echo "Hello:";
+					echo '<li id="user-name">'.$this->Html->link($this->Session->read('Auth.User.username'), array('controller'=>'users','action'=>'view',$this->Session->read('Auth.User.id')))."</li>";
+					echo "<li>".$this->Html->link('Log out',array('controller'=>'users','action'=>'logout'))."</li>";
+				}
+				?>
 			</ul>
+		</div>
 		</div>
 		<div id="content">
 
@@ -69,13 +84,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 			<?php echo $this->fetch('content'); ?>
 		</div>
 		<div id="footer">
+			<!--
 			<?php echo $this->Html->link(
 					$this->Html->image('cake.power.gif', array('alt' => $cakeDescription, 'border' => '0')),
 					'http://www.cakephp.org/',
 					array('target' => '_blank', 'escape' => false)
 				);
-			?>
+			?>-->
 		</div>
+
 	</div>
 	<?php echo $this->element('sql_dump'); ?>
 </body>

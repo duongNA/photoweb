@@ -6,6 +6,20 @@ class User extends AppModel{
 
 
   /**
+   * Create upload behaviour for Post model
+   * @var array
+   */
+  public $actsAs =array (
+    'Upload.Upload'=> array (
+      'avatar'=> array(
+        'fields'=> array (
+          'dir' => 'avatar_dir',
+          )
+        )
+      )
+    );
+
+  /**
    * Validate data before saved
    * @var array
    */

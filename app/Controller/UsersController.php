@@ -114,10 +114,10 @@ class UsersController extends AppController{
       $this->request->data['User']['banned'] = 0;
 
       //If user is not submit an avatar then set avatar to default
-      if(isset($this->request->data['User']['avatar'])){
-        $this->request->data['User']['avatar']='avatar.png';
-        $this->request->data['User']['avatar_dir']='default';
-      }
+      // if(isset($this->request->data['User']['avatar'])){
+      //   $this->request->data['User']['avatar']='avatar.png';
+      //   $this->request->data['User']['avatar_dir']='default';
+      // }
 
       if($this->User->save($this->request->data)){
 
@@ -177,9 +177,19 @@ class UsersController extends AppController{
       throw new MethodNotAllowedException();
     }
 
-    $this->request->data['User']['id']=$id;
-    $this->request->data['User']['status']=0;
-    if($this->User->save($this->request->data)){
+    // $this->request->data['User']['id']=$id;
+    // $this->request->data['User']['status']=0;
+    // $this->request->data['Post']['status']=0;
+    // $this->request->data['Album']['status']=0;
+    // $this->request->data['Comment']['status']=0;
+    // if($this->User->save($this->request->data)){
+    // if($this->User->saveAssociated($this->request->data)){
+    if( $this->User->Comment->updateAll(array("Comment.status"=>0),array("Comment.user_id"=>$id)) &&
+        $this->User->Post->updateAll(array("Post.status"=>0),array("Post.user_id"=>$id)) &&
+        $this->User->Album->updateAll(array("Album.status"=>0),array("Album.user_id"=>$id)) &&
+        $this->User->updateAll(array("User.status"=>0),array("User.id"=>$id))
+      )
+    {
       $this->Session->setFlash(__('User have been deleted'));
       $this->redirect(array('controller'=>'users','action'=>'index'));
     }
@@ -228,5 +238,28 @@ class UsersController extends AppController{
       $this->Session->setFlash(__('User have been un banned'));
       $this->redirect(array('controller'=>'users','action'=>'index'));
     }
+  }
+
+  /**
+   * Manage users in the websites
+   * @return [type] [description]
+   */
+  public function manage(){
+    if($this->request->data!=null){
+      $search = '%'.$this->request->data['User']['searchstring'].'%';
+    } else {
+      $search ='%%';
+    }
+
+    $this->paginate = array (
+      'conditions' => array(
+        'User.status' => 1,
+        'User.username LIKE' => $search
+        ),
+      'limit' => 10,
+      'order' => array('User.created'=>'DESC')
+      );
+
+    $this->set('users',$this->paginate());
   }
 }
