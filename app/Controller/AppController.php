@@ -33,41 +33,57 @@ App::uses('Controller', 'Controller');
  */
 class AppController extends Controller {
 
-  // public $helpers= array('Html','Js','Form');
+	public $helpers= array('Html','Js','Form', 'Facebook.Facebook');
 
-  public $components=array(
-    'DebugKit.Toolbar',
-    'Session',
-    'Auth' => array (
-      'loginRedirect' => array ('controller' => 'posts','action' => 'index'),
-      'logoutRedirect' => array ('controller' => 'posts','action' => 'index'),
-      'authorize' => array('Controller')
-      )
-    );
+	public $components=array(
+			'Session',
+			'Auth' => array (
+					'loginRedirect' => array ('controller' => 'posts','action' => 'index'),
+					'logoutRedirect' => array ('controller' => 'users','action' => 'login'),
+					'authorize' => array('Controller')
+			),
+			'Facebook.Connect' => array('model' => 'User')
+	);
 
-  /**
-   * Prepocess before each be executed in every controller
-   * @return [type] [description]
-   */
-  public function beforeFilter(){
+	/**
+	 * Prepocess before each be executed in every controller
+	 * @return [type] [description]
+	 */
+	public function beforeFilter(){
 
-    // This allow anonymous user can access the index view and view detail view
-    // function to be used is AuthComponent::allow()
-    $this->Auth->allow('index','view','hot');
-  }
+		// This allow anonymous user can access the index view and view detail view
+		// function to be used is AuthComponent::allow()
+		$this->set('facebook_user', $this->Connect->user());
+		$this->set('user', $this->Auth->user());
 
-  /**
-   * Grand all permission for admin
-   * @param  [type]  $user [description]
-   * @return boolean       [description]
-   */
-  public function isAuthorized($user) {
+		$this->Auth->allow('index','view','hot', 'logout', 'login');
+	}
 
-    //Check if user has grand access to all pages
-    if(isset($user['role']) && $user['role']=='admin')
-      return true;
+	/**
+	 * Grand all permission for admin
+	 * @param  [type]  $user [description]
+	 * @return boolean       [description]
+	 */
+	public function isAuthorized($user) {
 
-    //Else deny access
-    return false;
-  }
+		//Check if user has grand access to all pages
+		if(isset($user['role']) && $user['role'] == 'admin')
+			return true;
+
+		//Else deny access
+		return false;
+	}
+
+	public function beforeFacebookSave() {
+		$this->Connect->authUser['User']['email'] = $this->Connect->user('email');
+		$this->Connect->authUser['User']['role'] = 'author';
+		$this->Connect->authUser['User']['gender'] = $this->Connect->user('gender');
+		return true;
+	}
+
+	function afterFacebookLogin(){
+		//Logic to happen after successful facebook login.
+		$this->redirect($this->Auth->redirect());
+	}
+
 }

@@ -19,7 +19,7 @@
 $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework');
 ?>
 <!DOCTYPE html>
-<html>
+<?php echo $this->Facebook->html(); ?>
 <head>
 	<?php echo $this->Html->charset(); ?>
 	<title>
@@ -29,11 +29,17 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 	<?php
 		echo $this->Html->meta('icon');
 
+			
 		echo $this->Html->css('cake.generic');
-
+		
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
+// 		echo $this->Html->script('jquery-1.7.1.min');
+// 		echo $this->Html->script('jquery.masonry.min');
+// 		echo $this->Html->script('modernizr-2.5.3.min');
+// 		echo $this->Html->script('script');
+// 		echo $this->Html->script('jquery.infinitescroll.min');	
 	?>
 </head>
 <body>
@@ -94,6 +100,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		</div>
 
 	</div>
-	<?php echo $this->element('sql_dump'); ?>
+  	<?php echo $this->element('sql_dump'); ?>
+	<?php echo $this->Facebook->init(); ?>
 </body>
 </html>

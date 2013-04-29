@@ -33,7 +33,7 @@ class PostsController extends AppController{
   public function index(){
     $this->paginate = array (
       'conditions' => array('Post.status' => 1),
-      'limit' => 10,
+      'limit' => 20,
       'order' => array('Post.created'=>'DESC')
       );
 

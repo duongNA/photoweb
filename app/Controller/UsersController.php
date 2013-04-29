@@ -11,15 +11,15 @@ class UsersController extends AppController{
 
     // Pass settings in using 'all'
     // Additional conditions
-    $this->Auth->authenticate = array(
-      AuthComponent::ALL => array(
-        'scope'=>array(
-          'User.status' => 1,
-          'User.banned' => 0
-          )
-        ),
-        'Form'
-    );
+//     $this->Auth->authenticate = array(
+//       AuthComponent::ALL => array(
+//         'scope'=>array(
+//           'User.status' => 1,
+//           'User.banned' => 0
+//           )
+//         ),
+//         'Form'
+//     );
 
     //Allow anonymous can register new account
     $this->Auth->allow('add');
@@ -27,14 +27,14 @@ class UsersController extends AppController{
 
 
   public function isAuthorized($user) {
-    if($this->action==='logout'){
+    if($this->action === 'logout' || $this->action == 'myaccount') {
       return true;
     }
 
     // The owner of account can edit and change password
     if (in_array($this->action, array('edit', 'changepass'))) {
         $userId = $this->request->params['pass'][0];
-        if ($userId==$this->Auth->user('id')) {
+        if ($userId == $this->Auth->user('id')) {
             return true;
         }
     }
@@ -61,7 +61,16 @@ class UsersController extends AppController{
    * @return [type] [description]
    */
   public function logout() {
-    $this->redirect($this->Auth->logout());
+  	if ($this->Connect->FB->getUser() == 0){
+  		$this->redirect($this->Auth->logout());
+  	}else{
+  		//ditch FB data for safety
+  		$this->Connect->FB->destroysession();
+  		//hope its all gone with this
+  		session_destroy();
+  		//logout and redirect to the screen that you usually do.
+  		$this->redirect($this->Auth->logout());
+  	}
   }
 
   /**
@@ -261,5 +270,9 @@ class UsersController extends AppController{
       );
 
     $this->set('users',$this->paginate());
+  }
+  
+  public function myaccount() {
+  	
   }
 }
