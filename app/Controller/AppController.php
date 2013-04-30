@@ -42,7 +42,7 @@ class AppController extends Controller {
 					'logoutRedirect' => array ('controller' => 'users','action' => 'login'),
 					'authorize' => array('Controller')
 			),
-			'Facebook.Connect' => array('model' => 'User')
+			'Facebook.Connect' => array('model' => 'User'),
 	);
 
 	/**

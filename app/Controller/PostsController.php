@@ -2,236 +2,298 @@
 <?php
 class PostsController extends AppController{
 
-  /**
-   * Handle authorization in PostsController
-   * Status: Done
-   * @param  [type]  $user [description]
-   * @return boolean       [description]
-   */
-  public function isAuthorized($user) {
-    // All registered users can add posts
-    if ($this->action === 'add') {
-        return true;
-    }
+	public function beforeFilter() {
+		parent::beforeFilter();
+		$this->Auth->allow('browse');
+	}
 
-    // The owner of a post can edit and delete it
-    if (in_array($this->action, array('edit', 'delete'))) {
-        $postId = $this->request->params['pass'][0];
-        if ($this->Post->isOwnedBy($postId, $user['id'])) {
-            return true;
-        }
-    }
-    return parent::isAuthorized($user);
-  }
+	/**
+	 * Handle authorization in PostsController
+	 *
+	 * Status: Done
+	 * @param  [type]  $user [description]
+	 * @return boolean       [description]
+	 */
+	public function isAuthorized($user) {
+		// All registered users can add posts
+		if ($this->action === 'add') {
+			return true;
+		}
 
-  /**
-   * This is default action be executed when user visit website
-   * View top 10 newest post on the website
-   * Status: Done
-   * @return [type] [description]
-   */
-  public function index(){
-    $this->paginate = array (
-      'conditions' => array('Post.status' => 1),
-      'limit' => 20,
-      'order' => array('Post.created'=>'DESC')
-      );
+		// The owner of a post can edit and delete it
+		if (in_array($this->action, array('edit', 'delete'))) {
+			$postId = $this->request->params['pass'][0];
+			if ($this->Post->isOwnedBy($postId, $user['id'])) {
+				return true;
+			}
+		}
+		return parent::isAuthorized($user);
+	}
 
-    $this->set('posts',$this->paginate());
-  }
+	/**
+	 * This is default action be executed when user visit website
+	 * View top 10 newest post on the website
+	 * Status: Done
+	 * @return [type] [description]
+	 */
+	public function index(){
+		$this->paginate = array (
+				'conditions' => array('Post.status' => 1),
+				'limit' => 20,
+				'order' => array('Post.created'=>'DESC')
+		);
 
-  /**
-   * View post detail
-   * Status: Done
-   * @param  [type] $id [description]
-   * @return [type]     [description]
-   */
-  public function view($id=null){
-    //When no post_id is specificed then throw exception
-    if(!$id){
-      throw new NotFoundException(__('Invalid post'));
-    }
+		$this->set('posts',$this->paginate());
+	}
 
-    // Search post which is specificed with post_id
-    $post=$this->Post->findById($id);
+	/**
+	 * View post detail
+	 * Status: Done
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
+	public function view($id=null){
+		//When no post_id is specificed then throw exception
+		if(!$id){
+			throw new NotFoundException(__('Invalid post'));
+		}
 
-    // If no post is exists with the post_id then throw exception
-    if(!$post){
-      throw new NotFoundException(__('Invalid post'));
-    }
+		// Search post which is specificed with post_id
+		$post=$this->Post->findById($id);
 
-    // Check post's status to make sure the post is still actived
-    if($post['Post']['status']==0){
-      throw new NotFoundException(__('Invalid post'));
-    }
+		// If no post is exists with the post_id then throw exception
+		if(!$post){
+			throw new NotFoundException(__('Invalid post'));
+		}
 
-    $this->set('post',$post);
-  }
+		// Check post's status to make sure the post is still actived
+		if($post['Post']['status']==0){
+			throw new NotFoundException(__('Invalid post'));
+		}
 
-  /**
-   * Add new post if album_id is present new post will be added to the album else
-   * new album will be created.
-   * Status: On going
-   * @param [type] $album_id [description]
-   */
-  public function add($album_id=null){
+		$this->set('post',$post);
+	}
 
-    if($this->request->is('post')) {
+	/**
+	 * Add new post if album_id is present new post will be added to the album else
+	 	* new album will be created.
+	 * Status: On going
+	 * @param [type] $album_id [description]
+	 */
+	public function add($album_id=null){
+		$this->layout = 'ajax';
+		$this->loadModel('Album');
+		$this->loadModel('Category');
+			
+		$albumList = $this->Album->find('list');
+		$this->set('albumList', $albumList);
+			
+		$this->Category->recursive = -1;
+		$categoryList = $this->Category->find('list', array('fields' => array('id', 'name')));
+		$this->set('categoryList', array_values($categoryList));
 
-      $this->Post->create();
+		if($this->request->is('post')) {
 
-      //Add post default status
-      $this->request->data['Post']['status']=1;
+			$this->Post->create();
+				
+			if ($this->data['Category']['categories']) {
 
-      //Add post like count
-      $this->request->data['Post']['liked']=0;
+				$tags = explode(',',$this->data['Category']['categories']);
+				debug($tags);
+				foreach($tags as $_tag) {
+					$_tag = strtolower(trim($_tag));
+					if ($_tag) {
+						// check if the tag exists
+						$this->Post->Category->recursive = -1;
+						$tag = $this->Post->Category->findByName($_tag);
 
-      //Add post view count
-      $this->request->data['Post']['viewed']=0;
+						debug($tag);
 
-      //Add owner of this post
-      $this->request->data['Post']['user_id']=$this->Auth->user('id');
+						if ($tag) {
+							// use current tag
+							$this->request->data['Category']['Category'][$tag['Category']['id']] = $tag['Category']['id'];
 
-      // Add owner of this album
-      $this->request->data['Album']['user_id']=$this->Auth->user('id');
+						}
+					}
+				}
+			}
 
-      //Add album status
-      $this->request->data['Album']['status']=1;
+			//Add post default status
+			$this->request->data['Post']['status']=1;
 
-      // if($this->Post->save($this->request->data)){
-      if($this->Post->saveAssociated($this->request->data)) {
-        $this->Session->setFlash(__('Your post have been saved'));
-        $this->redirect(array('action'=>'index'));
-      } else {
-        $this->Session->setFlash(__('Unable to save post'));
-        }
-    }
-  }
+			//Add post like count
+			$this->request->data['Post']['liked']=0;
 
-  /**
-   * Edit a post in the website
-   * Status: On going
-   * @param  [type] $id [description]
-   * @return [type]     [description]
-   */
-  public function edit($id=null){
+			//Add post view count
+			$this->request->data['Post']['viewed']=0;
 
-    //Check post_id is passed
-    if(!$id) {
-      $this->Session->setFlash(__('Invalid Post'));
-    }
+			//Add owner of this post
+			$this->request->data['Post']['user_id']=$this->Auth->user('id');
 
-    //Find post with the passing post_id
-    $post= $this->Post->findById($id);
+			// Add owner of this album
+			if (!$this->request->data['Album']['id']) {
+				if (!$this->request->data['Album']['title']) {
+					$this->request->data['Album']['title'] = 'untitle';
+				}
 
-    //Check post is exists in the database
-    if(!$post) {
-      throw new NotFoundEXception(__('Invalid Post'));
-    }
+				$this->request->data['Album']['user_id']=$this->Auth->user('id');
 
-    //Make sure that the post is still actived
-    if($post['Post']['status']==0) {
-     throw new NotFoundEXception(__('Invalid Post'));
-    }
+				//Add album status
+				$this->request->data['Album']['status']=1;
+			}
 
-    if($this->request->is('post')||$this->request->is('put')) {
+			// if($this->Post->save($this->request->data)){
+			if($this->Post->saveAssociated($this->request->data)) {
+				$this->Session->setFlash(__('Your post have been saved'));
+				$this->redirect(array('action'=>'index'));
+			} else {
+				$this->Session->setFlash(__('Unable to save post'));
+			}
+		}
+	}
 
-      $this->Post->id=$id;
+	/**
+	 * Edit a post in the website
+	 * Status: On going
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
+	public function edit($id=null){
 
-      if($this->Post->save($this->request->data)) {
+		//Check post_id is passed
+		if(!$id) {
+			$this->Session->setFlash(__('Invalid Post'));
+		}
 
-        $this->Session->setFlash(__('You post have been saved'));
-        $this->redirect(array('action'=>'index'));
+		//Find post with the passing post_id
+		$post= $this->Post->findById($id);
 
-      } else {
-        $this->Session->setFlash(__('Unable to update your post'));
-      }
-    }
+		//Check post is exists in the database
+		if(!$post) {
+			throw new NotFoundException(__('Invalid Post'));
+		}
 
-    if (!$this->request->data) {
-        $this->request->data = $post;
-    }
-  }
+		//Make sure that the post is still actived
+		if($post['Post']['status']==0) {
+			throw new NotFoundException(__('Invalid Post'));
+		}
 
-  /**
-   * When delete a post all comments related to this post are also be deleted
-   * Status: Ongoing
-   * @param  [type] $id [description]
-   * @return [type]     [description]
-   */
-  public function delete($id=null){
+		if($this->request->is('post') || $this->request->is('put')) {
 
-    if($this->request->is('get')) {
-      throw new MethodNotAllowedException();
-    }
+			$this->Post->id=$id;
 
-    // $this->request->data['Post']['status']=0;
-    // $this->request->data['Comment']['status']=0;
-    // if($this->Post->delete($id))
-    // if($this->Post->save($this->request->data)){
-    // if($this->Post->saveAssociated($this->request->data)){
-    if($this->Post->Comment->updateAll(array("Comment.status"=>0),array("Comment.post_id"=> $id)) &&
-        $this->Post->updateAll(array("Post.status"=>0),array("Post.id"=> $id)))
-    {
-      $this->Session->setFlash(__('The post have been deleted'));
-      $this->redirect(array('controller'=>'posts','action'=>'index'));
-    }
-  }
+			if($this->Post->save($this->request->data)) {
 
-  /**
-   * Display currently hot post in the website
-   * The rank is compared by viewed and liked
-   * Status: Done
-   * @return [type] [description]
-   */
-  public function hot() {
-    $this->paginate = array(
-      'conditions' => array('Post.status' => 1),
-      'limit' => 10,
-      'order' => array (
-        'Post.viewed DESC',
-        'Post.liked DESC'
-        )
-      );
+				$this->Session->setFlash(__('You post have been saved'));
+				$this->redirect(array('action'=>'index'));
 
-    $this->set('posts',$this->paginate());
-  }
+			} else {
+				$this->Session->setFlash(__('Unable to update your post'));
+			}
+		}
 
-  /**
-   * Post management's page for admin
-   * @return [type] [description]
-   */
-  public function manage() {
-     if($this->request->data!=null){
-      $search = '%'.$this->request->data['Post']['searchstring'].'%';
-    } else {
-      $search ='%%';
-    }
-    
-    $this->paginate = array (
-      'conditions' => array('Post.status' => 1),
-      'limit' => 10,
-      'order' => array('Post.created'=>'DESC')
-      );
+		if (!$this->request->data) {
+			$this->request->data = $post;
+		}
+	}
 
-    $this->set('posts',$this->paginate());
-  }
+	/**
+	 * When delete a post all comments related to this post are also be deleted
+	 * Status: Ongoing
+	 * @param  [type] $id [description]
+	 * @return [type]     [description]
+	 */
+	public function delete($id=null){
 
-  /**
-   * Like action
-   * Status: Ongoing
-   * @return [type] [description]
-   */
-  public function like() {
+		if($this->request->is('get')) {
+			throw new MethodNotAllowedException();
+		}
 
-  }
+		// $this->request->data['Post']['status']=0;
+		// $this->request->data['Comment']['status']=0;
+		// if($this->Post->delete($id))
+		// if($this->Post->save($this->request->data)){
+		// if($this->Post->saveAssociated($this->request->data)){
+		if($this->Post->Comment->updateAll(array("Comment.status"=>0),array("Comment.post_id"=> $id)) &&
+				$this->Post->updateAll(array("Post.status"=>0),array("Post.id"=> $id)))
+		{
+			$this->Session->setFlash(__('The post have been deleted'));
+			$this->redirect(array('controller'=>'posts','action'=>'index'));
+		}
+	}
 
-  /**
-   * Unlike action
-   * Status: Ongoing
-   * @return [type] [description]
-   */
-  public function unlike() {
+	/**
+	 * Display currently hot post in the website
+	 * The rank is compared by viewed and liked
+	 * Status: Done
+	 * @return [type] [description]
+	 */
+	public function hot() {
+		$this->paginate = array(
+				'conditions' => array('Post.status' => 1),
+				'limit' => 10,
+				'order' => array (
+						'Post.viewed DESC',
+						'Post.liked DESC'
+				)
+		);
 
-  }
+		$this->set('posts',$this->paginate());
+	}
+
+	/**
+	 * Post management's page for admin
+	 * @return [type] [description]
+	 */
+	public function manage() {
+		if($this->request->data!=null){
+			$search = '%'.$this->request->data['Post']['searchstring'].'%';
+		} else {
+			$search ='%%';
+		}
+
+		$this->paginate = array (
+				'conditions' => array('Post.status' => 1),
+				'limit' => 10,
+				'order' => array('Post.created'=>'DESC')
+		);
+
+		$this->set('posts',$this->paginate());
+	}
+
+	/**
+	 * Like action
+	 * Status: Ongoing
+	 * @return [type] [description]
+	 */
+	public function like() {
+
+	}
+
+	/**
+	 * Unlike action
+	 * Status: Ongoing
+	 * @return [type] [description]
+	 */
+	public function unlike() {
+
+	}
+
+	public function browse($categoryId = null) {
+		
+		$pagination = array(
+					'conditions' => array('Post.status' => 1),
+					'limit' => 5,
+					'order' => array('Post.created' => 'DESC')
+		);
+
+		if ($categoryId != null) {
+			$pagination['conditions'][] = array('CategoriesPosts.category_id' => $categoryId);
+			$this->Post->bindModel(array('hasOne' => array('CategoriesPosts')), false);
+		}
+
+		$this->paginate = $pagination;
+
+		$this->set('posts', $this->paginate('Post'));
+	}
 }

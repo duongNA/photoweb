@@ -31,11 +31,21 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 
 			
 		echo $this->Html->css('cake.generic');
+		echo $this->Html->css('blitzer/jquery-ui-1.10.2.custom');
 		
 		echo $this->fetch('meta');
 		echo $this->fetch('css');
 		echo $this->fetch('script');
-// 		echo $this->Html->script('jquery-1.7.1.min');
+
+		echo $this->Html->script('jquery-1.7.1.min.js');
+		echo $this->Html->script('jquery-ui-1.10.2.custom.js');
+		
+		echo $this->Html->script('jquery.masonry.js');
+		echo $this->Html->script('jquery.isotope.js');
+		echo $this->Html->script('jquery.infinitescroll.min.js');
+		echo $this->Html->script('script');
+		
+		
 // 		echo $this->Html->script('jquery.masonry.min');
 // 		echo $this->Html->script('modernizr-2.5.3.min');
 // 		echo $this->Html->script('script');
@@ -54,7 +64,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 						<?php echo $this->Html->link('Hot',array('controller'=>'posts','action'=>'hot'));?>
 				</li>
 				<li>
-						<?php echo $this->Html->link('Add new post',array('controller'=>'posts','action'=>'add'));?>
+						<input type="button" id="btn-add-new-post" value="Add new post">
 				</li>
 				<?php
 					if($this->Session->check('Auth.User')){
