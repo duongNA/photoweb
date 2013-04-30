@@ -70,6 +70,10 @@ class PostsController extends AppController{
 		if($post['Post']['status']==0){
 			throw new NotFoundException(__('Invalid post'));
 		}
+		
+		if ($this->request->is('ajax')) {
+			$this->layout = 'ajax';
+		}
 
 		$this->set('post',$post);
 	}
@@ -91,6 +95,7 @@ class PostsController extends AppController{
 		$this->Category->recursive = -1;
 		$categoryList = $this->Category->find('list', array('fields' => array('id', 'name')));
 		$this->set('categoryList', array_values($categoryList));
+		debug($categoryList);
 
 		if($this->request->is('post')) {
 
@@ -283,7 +288,7 @@ class PostsController extends AppController{
 		
 		$pagination = array(
 					'conditions' => array('Post.status' => 1),
-					'limit' => 5,
+					'limit' => 10,
 					'order' => array('Post.created' => 'DESC')
 		);
 

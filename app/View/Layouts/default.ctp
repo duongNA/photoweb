@@ -45,6 +45,15 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 		echo $this->Html->script('jquery.infinitescroll.min.js');
 		echo $this->Html->script('script');
 		
+		// fancybox lib
+		echo $this->Html->script('fancybox/lib/jquery.mousewheel-3.0.6.pack.js');
+		
+		// fancybox
+		echo $this->Html->script('fancybox/source/jquery.fancybox.pack.js');
+		echo $this->Html->css('fancybox/source/jquery.fancybox');
+		
+		
+		
 		
 // 		echo $this->Html->script('jquery.masonry.min');
 // 		echo $this->Html->script('modernizr-2.5.3.min');
