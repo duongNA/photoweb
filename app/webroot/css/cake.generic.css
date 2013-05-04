@@ -87,6 +87,8 @@ p {
 #header {
 	padding: 10px 20px;
 	background-color: #E68004;
+	height: 50px;
+	line-height: 30px;
 }
 
 #header h1 {
@@ -866,7 +868,46 @@ div .search div{
 	font-size: 35px !important;	
 }
 
+div.manage#albums{
+
+}
+
+div.manage#posts{
+
+}
+
+div.manage#users{
+
+}
+
 /** CSS for User**/
+div #registration{
+	margin-left: auto;
+	margin-right: auto;
+	width: 45%;
+}
+
+div .login{
+	border: 1px solid black;
+	border-radius: 5px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 1em 1em 1em 5em;
+	width: 60%;
+}	
+
+div .login div{
+	display: inline-block;
+}
+
+div .site-login{
+	border-right: 1px solid black;
+}
+
+div .fb-login{
+	float: right;
+}
+
 
 #user-information #avatar img {
 	height: 150px;
@@ -934,7 +975,22 @@ div.post-related{
 	float: right;
 }
 
+div.post-add-form{
+	border-left: 1px solid black;
+	border-right: 1px solid black;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 1em 0em 0em 1em;
+	width: 80%;
+}
 
+div.post-add-form div.new div{
+	display: inline-block;
+}
+
+div.post-add-form div.select div{
+	display: inline-block;
+}
 
 .file-preview {
 	background: #ccc;

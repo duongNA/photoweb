@@ -1,4 +1,4 @@
-
+<div class="manage" id="users">
 <div class="search">
 <?php
   echo $this->Form->create();
@@ -60,3 +60,4 @@
     <?php endforeach ?>
 </table>
 <?php echo $this->Paginator->numbers();?>
+</div>
