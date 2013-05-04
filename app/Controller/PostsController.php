@@ -103,53 +103,16 @@ class PostsController extends AppController{
 	/**
 	 * Add new post if album_id is present new post will be added to the album else
 	 	* new album will be created.
-	 * Status: On going
+	 * Status: Done
 	 * @param [type] $album_id [description]
 	 */
 	public function add($album_id=null){
-		/*
-		$this->layout = 'ajax';
-		$this->loadModel('Album');
-		$this->loadModel('Category');
-			
-		$albumList = $this->Album->find('list');
-		$this->set('albumList', $albumList);
-			
-		$this->Category->recursive = -1;
-		$categoryList = $this->Category->find('list', array('fields' => array('id', 'name')));
-		$this->set('categoryList', array_values($categoryList));
-		*/
 		if($this->request->is('post')) {
 
 			$this->Post->create();
-			/*	
-			if ($this->data['Category']['categories']) {
-
-				$tags = explode(',',$this->data['Category']['categories']);
-				debug($tags);
-				foreach($tags as $_tag) {
-					$_tag = strtolower(trim($_tag));
-					if ($_tag) {
-						// check if the tag exists
-						$this->Post->Category->recursive = -1;
-						$tag = $this->Post->Category->findByName($_tag);
-
-						debug($tag);
-
-						if ($tag) {
-							// use current tag
-							$this->request->data['Category']['Category'][$tag['Category']['id']] = $tag['Category']['id'];
-
-						}
-					}
-				}
-			}
-			*/
+			
 			//Add post default status
 			$this->request->data['Post']['status']=1;
-
-			//Add post like count
-			// $this->request->data['Post']['liked']=0;
 
 			//Add post view count
 			$this->request->data['Post']['viewed']=0;
@@ -157,24 +120,32 @@ class PostsController extends AppController{
 			//Add owner of this post
 			$this->request->data['Post']['user_id']=$this->Auth->user('id');
 
-			// Add owner of this album
-			if (!$this->request->data['Album']['id']) {
-				if (!$this->request->data['Album']['title']) {
+			// Add owner of this album if when user choose schema create new album
+			if ($this->request->data['Post']['album_id'] == null) {
+				
+				//This one is unnecessary because Album Title is a required field.
+				/*if (!$this->request->data['Album']['title']) {
 					$this->request->data['Album']['title'] = 'untitle';
-				}
+				}*/
 
 				$this->request->data['Album']['user_id']=$this->Auth->user('id');
 
 				//Add album status
 				$this->request->data['Album']['status']=1;
-			}
 
-			// if($this->Post->save($this->request->data)){
-			if($this->Post->saveAssociated($this->request->data)) {
-				$this->Session->setFlash(__('Your post have been saved'));
-				$this->redirect(array('action'=>'index'));
+				if($this->Post->saveAssociated($this->request->data)) {
+					$this->Session->setFlash(__('Your post have been saved'));
+					$this->redirect(array('action'=>'index'));
+				} else {
+					$this->Session->setFlash(__('Unable to save post'));
+				}
 			} else {
-				$this->Session->setFlash(__('Unable to save post'));
+				if($this->Post->save($this->request->data)){
+					$this->Session->setFlash(__('Your post have been saved'));
+					$this->redirect(array('action'=>'index'));
+				} else {
+					$this->Session->setFlash(__('Unable to save post'));	
+				}
 			}
 		}
 	}

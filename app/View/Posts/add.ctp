@@ -2,11 +2,11 @@
 <?php
 echo $this->Form->create('Post',array('type'=>'file'));?>
 
-<div class="select">
-<div style="display:none" id="albumList">
-  <?php echo $this->Form->input('field', array('options' => $album));?>
+<div class="select" style="display:none">
+<div  id="albumList">
+  <?php echo $this->Form->input('fields', array('options' => $album));?>
 </div>
-<div style="display:none" id="new">
+<div id="new">
   <?php echo $this->Form->button('Create new album',array('type'=>'button'));?>
 </div>
 </div>
@@ -34,17 +34,28 @@ echo $this->Form->create('Post',array('type'=>'file'));?>
 $('document').ready(function(){
   
   $('#choose').click(function(){
-    $('#AlbumTitle').hide();
-    $('#new').show();
-    $('#albumList').show();
-    $('#choose').hide();
+    $('.new').hide();
+    /*$('#AlbumTitle').hide();
+    $('#choose').hide();*/
+    $('#AlbumTitle').removeAttr('required');
+
+    $('.select').show();
+    $('#PostFields').attr('name','data[Post][album_id]');
+    /*$('#new').show();
+    $('#albumList').show();*/
+    
   });
 
   $('#new').click(function(){
-    $('#AlbumTitle').show();
-    $('#choose').show();
-    $('#albumList').hide();
-    $('#new').hide();
+    $('.new').show();
+    /*$('#AlbumTitle').show();
+    $('#choose').show();*/
+    $('#AlbumTitle').attr('required','required');
+
+    $('.select').hide();
+    $('#PostFields').removeAttr('name')
+    /*$('#albumList').hide();
+    $('#new').hide();*/
   });
 });
 </script>
