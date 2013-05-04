@@ -1,8 +1,10 @@
+<div class="search">
 <?php
   echo $this->Form->create();
-  echo $this->Form->input('searchstring');
+  echo $this->Form->input('searchstring',array('label'=>'','placeholder'=>'Search string'));
   echo $this->Form->end('Search');
 ?>
+</div>
 
 <table>
   <tr>

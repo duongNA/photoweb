@@ -853,16 +853,21 @@ div .top-menu#user-menu {
 	float: right;
 }
 
-/**CSS for Post**/
+/**CSS for Manage Screens**/
+div .search{
+	float: right;
+}
+
+div .search div{
+	display: inline-block;
+}	
+
+.manage-title{
+	font-size: 35px !important;	
+}
 
 /** CSS for User**/
 
-/*#user-information{
-	width: 960px;
-	margin-left: auto;
-	margin-right: auto;
-	overflow: auto;
-}*/
 #user-information #avatar img {
 	height: 150px;
 	width: 150px;
@@ -876,22 +881,61 @@ div .top-menu#user-menu {
 	padding-left: 20px;
 }
 
-#user-information .content {
-	margin-left: 32%;
-	width: 65%;
-}
-
 #user-information #user-name {
 	color: green;
 	font-weight: bold;
 	font-size: 20px;
 }
 
+#user-information #tabs {
+	margin-left: 32%;
+	width: 65%;
+}
+
+#user-information #tabs{
+	border:none;
+}
+
+#user-information #tabs>ul{
+	background: #CCCCCC !important;
+	border-color: #AAAAAA !important;
+	height: 31px;
+
+}
+
 /**CSS for Album**/
 
 /** CSS for Comment**/
 
-/* CSS for post */
+/* CSS for Post */
+
+div.post{
+	width: 60%;
+}
+
+div.post .post-image{
+	text-align: center;
+}
+
+div.post .owner div{
+	display: inline-block;
+}
+
+div.post .owner div.ava-thumb{
+	height: 100px;
+	width: 100px;
+}
+
+div.post .owner div.info{
+
+}
+
+div.post-related{
+	float: right;
+}
+
+
+
 .file-preview {
 	background: #ccc;
 	border: 5px solid #fff;

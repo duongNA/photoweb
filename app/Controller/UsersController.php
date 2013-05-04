@@ -186,13 +186,6 @@ class UsersController extends AppController{
       throw new MethodNotAllowedException();
     }
 
-    // $this->request->data['User']['id']=$id;
-    // $this->request->data['User']['status']=0;
-    // $this->request->data['Post']['status']=0;
-    // $this->request->data['Album']['status']=0;
-    // $this->request->data['Comment']['status']=0;
-    // if($this->User->save($this->request->data)){
-    // if($this->User->saveAssociated($this->request->data)){
     if( $this->User->Comment->updateAll(array("Comment.status"=>0),array("Comment.user_id"=>$id)) &&
         $this->User->Post->updateAll(array("Post.status"=>0),array("Post.user_id"=>$id)) &&
         $this->User->Album->updateAll(array("Album.status"=>0),array("Album.user_id"=>$id)) &&
@@ -263,6 +256,7 @@ class UsersController extends AppController{
     $this->paginate = array (
       'conditions' => array(
         'User.status' => 1,
+        'User.role' =>'author',
         'User.username LIKE' => $search
         ),
       'limit' => 10,

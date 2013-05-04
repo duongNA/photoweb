@@ -1,3 +1,4 @@
+<!--
 <script type="text/javascript">
     $('input[type=file]').change(function(e) {
         if(typeof FileReader == "undefined") return true;
@@ -99,17 +100,6 @@ echo $this->Form->create('Post',array('type'=>'file'));
 echo $this->Form->input('Post.title', array('label'=>'Post title'));
 echo $this->Form->input('Post.image',array('type'=>'file','label'=>'Upload'));
 echo '<div class="file-preview"></div>';
-
-// If album_id is not present -> will create new album
-// if(!$this->request->pass){
-//   echo $this->Form->input('Album.title',array('label'=>'Album title'));
-// } else{
-// echo 'Album title : ';
-// echo $this->request->pass[1];
-// echo "<br>";
-// echo $this->Form->input('Album.id',array('type'=>'hidden','value'=>$this->request->pass[0]));
-// }
-
 ?>
 
 <div id="album-new">
@@ -132,4 +122,49 @@ echo '<div class="file-preview"></div>';
 <?php
 	echo $this->Form->input('Category.categories', array('label' => 'Categories', 'id' => 'categories')); 
 	echo $this->Form->submit(__('Create Post')); 
+?> -->
+
+<?php
+echo $this->Form->create('Post',array('type'=>'file'));?>
+
+<div style="display:none" id="albumList">
+  <?php
+    echo $this->Form->input('field', array('options' => $album));?>
+</div>
+
+<?php echo $this->Form->button('Choose',array('type'=>'button','id'=>'choose'));?>
+
+<div style="display:none" id="new">
+  <?php echo $this->Form->button('New',array('type'=>'button'));?>
+</div>
+
+<?php
+echo $this->Form->input('Album.title',array('label'=>'Album title'));
+echo $this->Form->input('Post.title', array('label'=>'Post title'));
+echo $this->Form->input('Post.image',array('type'=>'file','label'=>'Upload'));
 ?>
+
+<?php echo $this->Form->submit(__('Create Post'));
+echo $this->Form->button('Cancel',array('type'=>'reset'))."<br>";?>
+
+
+
+
+<script type="text/javascript">
+$('document').ready(function(){
+  
+  $('#choose').click(function(){
+    $('#AlbumTitle').hide();
+    $('#new').show();
+    $('#albumList').show();
+    $('#choose').hide();
+  });
+
+  $('#new').click(function(){
+    $('#AlbumTitle').show();
+    $('#choose').show();
+    $('#albumList').hide();
+    $('#new').hide();
+  });
+});
+</script>

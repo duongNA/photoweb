@@ -24,6 +24,7 @@ $cakeDescription = __d('cake_dev', 'CakePHP: the rapid development php framework
 <?php echo $this->Html->charset(); ?>
 <title><?php echo $cakeDescription ?>: <?php echo $title_for_layout; ?>
 </title>
+<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
 <?php
 echo $this->Html->meta('icon');
 
@@ -62,21 +63,21 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 <body>
 	<div id="container">
 		<div id="header">
-			<div id="header-container">
-				<a href="#" title="Logo">Logo</a>
-				<div id="search-bar">
+			<!-- <div id="header-container"> -->
+			<!-- 	<div id="search-bar">
 					<form>
 						<input type="text" name="key" placeholder="search">
 					</form>
-				</div>
+				</div> -->
 				<div class="top-menu" id="main-menu">
 					<ul>
 						<li><?php echo $this->Html->link('Home',array('controller'=>'posts','action'=>'index'), array('title' => 'Home'));?>
 						</li>
 						<li><?php echo $this->Html->link('Hot',array('controller'=>'posts','action'=>'hot'));?>
 						</li>
-						<li><input type="button" id="btn-add-new-post"
-							value="Add new post">
+						<li>
+							<!-- <input type="button" id="btn-add-new-post" value="Add new post"> -->
+							<?php echo $this->Html->link('Add new post',array('controller'=>'posts','action'=>'add'));?>
 						</li>
 						<?php
 						if($this->Session->check('Auth.User')){
@@ -84,7 +85,7 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 								echo "<li>".$this->Html->link("Manage users",array('controller'=>'users','action'=>'manage'))."</li>";
 								echo "<li>".$this->Html->link("Manage posts",array('controller'=>'posts','action'=>'manage'))."</li>";
 								echo "<li>".$this->Html->link("Manage albums",array('controller'=>'albums','action'=>'manage'))."</li>";
-								echo "<li>".$this->Html->link("Manage comments",array('controller'=>'comments','action'=>'manage'))."</li>";
+								// echo "<li>".$this->Html->link("Manage comments",array('controller'=>'comments','action'=>'manage'))."</li>";
 							}
 						}
 						?>
@@ -104,8 +105,10 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 						?>
 					</ul>
 				</div>
-			</div>
+				
+			<!-- </div> -->
 		</div>
+
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
