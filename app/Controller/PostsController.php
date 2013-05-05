@@ -77,6 +77,9 @@ class PostsController extends AppController{
 			throw new NotFoundException(__('Invalid post'));
 		}
 		
+		$post['Post']['viewed']++;
+
+		$this->Post->save($post);
 
 		// Find all post in the same album.
 		$this->set('related',$this->Post->find('all',array(

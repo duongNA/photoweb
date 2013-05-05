@@ -4,17 +4,17 @@ echo $this->Form->create('Post',array('type'=>'file'));?>
 
 <div class="select" style="display:none">
 <div  id="albumList">
-  <?php echo $this->Form->input('fields', array('options' => $album));?>
+  <?php echo $this->Form->input('fields', array('options' => $album,'label'=>'Albums List'));?>
 </div>
 <div id="new">
-  <?php echo $this->Form->button('Create new album',array('type'=>'button'));?>
+  <?php echo $this->Form->button('Create new album',array('type'=>'button','class'=>'custom-button'));?>
 </div>
 </div>
 
 <div class="new">
   <?php
     echo $this->Form->input('Album.title',array('label'=>'Album title'));
-    echo $this->Form->button('Add to existing',array('type'=>'button','id'=>'choose'));  
+    echo $this->Form->button('Add to existing',array('type'=>'button','id'=>'choose','class'=>'custom-button'));  
   ?>
 </div>
 <?php
@@ -22,11 +22,12 @@ echo $this->Form->create('Post',array('type'=>'file'));?>
   echo $this->Form->input('Post.title', array('label'=>'Post title'));
   echo $this->Form->input('Post.image',array('type'=>'file','label'=>'Choose image from your computer'));
 ?>
-
+<div class="form-buttons">
 <?php 
   echo $this->Form->submit(__('Create Post'));
-  echo $this->Form->button('Cancel',array('type'=>'reset'))."<br>";
+  echo $this->Form->button('Cancel',array('type'=>'reset','class'=>'custom-button','id'=>'cancel'))."<br>";
 ?>
+</div>
 </div>
 
 

@@ -29,7 +29,8 @@ body {
 
 a {
 	color: #003d4c;
-	text-decoration: underline;
+	/*text-decoration: underline;*/
+	text-decoration: none;
 	font-weight: bold;
 }
 
@@ -87,7 +88,7 @@ p {
 #header {
 	padding: 10px 20px;
 	background-color: #E68004;
-	height: 50px;
+	height: 30px;
 	line-height: 30px;
 }
 
@@ -118,6 +119,7 @@ p {
 }
 
 #content {
+	margin-top: 35px;
 	background: #fff;
 	clear: both;
 	color: #333;
@@ -128,7 +130,11 @@ p {
 #footer {
 	clear: both;
 	padding: 6px 10px;
-	text-align: right;
+	border-top: 1px solid black;
+	text-align: center;
+	font-weight: bold;
+	font-size: 110%;
+	margin: 20px 20px 0px 20px;
 }
 
 /** containers **/
@@ -851,9 +857,45 @@ div .top-menu {
 	display: inline-block;
 }
 
+div .top-menu li{
+	/*border-left:1px solid black;	*/
+	border-right: 1px solid black;	
+	padding-right: 25px;
+}
+
 div .top-menu#user-menu {
 	float: right;
 }
+
+.custom-button{
+	font-size: 110%;
+	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	background:#62af56;
+	font-weight:normal;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#76BF6B), to(#3B8230));
+	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
+	/*border-color: #2d6324;*/
+	border:1px solid #bbb;
+	color: #fff;
+	text-shadow: rgba(0, 0, 0, 0.5) 0px -1px 0px;
+	padding: 8px 10px;
+	border-radius: 4px;
+	background-image: -webkit-gradient(linear, left top, left bottom, from(#fefefe), to(#dcdcdc));
+	background-image: -webkit-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -moz-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -ms-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: -o-linear-gradient(top, #76BF6B, #3B8230);
+	background-image: linear-gradient(top, #76BF6B, #3B8230);
+	-moz-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.2);
+	-webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.2);
+	box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.3), 0px 1px 1px rgba(0, 0, 0, 0.2);
+}
+
+.custom-button:hover{
+	background: #5BA150;
+}
+
 
 /**CSS for Manage Screens**/
 div .search{
@@ -880,11 +922,15 @@ div.manage#users{
 
 }
 
+
 /** CSS for User**/
 div #registration{
+	border: 1px solid black;
+	border-radius: 5px;
 	margin-left: auto;
 	margin-right: auto;
-	width: 45%;
+	padding: 10px 50px 10px 50px;
+	width: 55%;
 }
 
 div .login{
@@ -908,6 +954,9 @@ div .fb-login{
 	float: right;
 }
 
+#user-information{
+	margin: 0px 50px 0px 50px;
+}
 
 #user-information #avatar img {
 	height: 150px;
@@ -916,16 +965,28 @@ div .fb-login{
 
 #user-information .brief {
 	border: 1px solid black;
+	border-radius: 4px;
 	float: left;
 	overflow: auto;
-	width: 25%;
+	height: 350px;
 	padding-left: 20px;
+	padding-top: 25px;
+	padding-right: 20px;
+	width: 20%;
+}
+
+#user-information .brief .info{
+	font-size: 110%;
+	font-weight: bold;
 }
 
 #user-information #user-name {
+	border-bottom: 1px solid gray;
 	color: green;
 	font-weight: bold;
 	font-size: 20px;
+	margin-bottom: 10px;
+	padding: 10px 10px 10px 0px;
 }
 
 #user-information #tabs {
@@ -951,11 +1012,22 @@ div .fb-login{
 /* CSS for Post */
 
 div.post{
+	margin-left: 25px;
 	width: 60%;
 }
 
 div.post .post-image{
 	text-align: center;
+	margin-bottom: 25px;
+}
+div.post .post-image img{
+	max-width: 750px;
+}
+
+div.post .owner{
+	border-bottom: 1px solid #B2C3AF;
+	margin-bottom: 15px;
+	padding-bottom: 25px;
 }
 
 div.post .owner div{
@@ -965,14 +1037,23 @@ div.post .owner div{
 div.post .owner div.ava-thumb{
 	height: 100px;
 	width: 100px;
+	border: 1px solid black;
+	margin-right: 10px;
 }
 
-div.post .owner div.info{
-
+div.post .owner div.info #title{
+	font-size: 16pt;
 }
 
 div.post-related{
 	float: right;
+	margin-right: 25px;
+}
+
+div.post-related img{
+	height: 100px;
+	width: 100px;
+
 }
 
 div.post-add-form{
@@ -986,11 +1067,35 @@ div.post-add-form{
 
 div.post-add-form div.new div{
 	display: inline-block;
+	vertical-align: baseline;
+}
+
+div.post-add-form div.new .input{
+	margin-right: 25px;
+	width: 450px;
 }
 
 div.post-add-form div.select div{
 	display: inline-block;
+	vertical-align: baseline;
 }
+
+div.post-add-form div.select #albumList{
+	margin-right: 25px;
+	width: 450px;
+}
+
+div .form-buttons div.submit
+{
+	display: inline-block;
+	vertical-align: baseline;
+}
+
+div .box-content div.meta.hide div.owner-block span.viewed{
+	float: right;
+	margin-right: 20px;
+}
+
 
 .file-preview {
 	background: #ccc;

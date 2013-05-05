@@ -27,7 +27,7 @@ class UsersController extends AppController{
 
 
   public function isAuthorized($user) {
-    if($this->action === 'logout' || $this->action == 'myaccount') {
+    if($this->action === 'logout') {
       return true;
     }
 
@@ -266,7 +266,4 @@ class UsersController extends AppController{
     $this->set('users',$this->paginate());
   }
   
-  public function myaccount() {
-  	
-  }
 }

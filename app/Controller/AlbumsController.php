@@ -51,6 +51,11 @@ class AlbumsController extends AppController{
    * @param [type] $id [description]
    */
   public function add(){
+    //AnhDN. 5/5/2013 cannot add album seperately
+    if($this->request->is('get')) {
+      throw new MethodNotAllowedEception();
+    }
+
     if($this->request->is('post')) {
       $this->Album->create();
 

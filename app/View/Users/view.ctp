@@ -6,12 +6,17 @@
   <div id="avatar"><?php echo $this->Html->image("/files/user/avatar/".$user['User']['avatar_dir']."/".$user['User']['avatar']);?></div>
 
   <div id="user-name"><?php echo $user['User']['username']?></div>
-  <br>
-  <?php echo "Joined date:"; echo $user['User']['created'];
-
-  echo "<br>Posts: ".count($user['Post'])."<br>";
-  echo "Albums: ".count($user['Album'])."<br>";
-
+  
+  <div class="info">
+    <?php  echo "Joined date: "; echo $user['User']['created'];?>
+  </div>
+  <div class="info">
+    <?php  echo "Posts: ".count($user['Post'])."<br>";?>
+  </div>
+  <div class="info">
+    <?php  echo "Albums: ".count($user['Album'])."<br>";?>
+  </div>
+  <?php
   if($this->Session->read('Auth.User.id')==$user['User']['id'] || $this->Session->read('Auth.User.role')=='admin')
     echo "<br>".$this->Html->link("Edit profile",array('controller'=>'users',"action"=>'edit',$user['User']['id']))."<br>";
     if($this->Session->read('Auth.User.id')==$user['User']['id'] || $this->Session->read('Auth.User.role')=='admin')
@@ -29,9 +34,6 @@
 </ul>
 
 <div id="tabs-1">
-<?php
-if($this->Session->read('Auth.User.id')===$user['User']['id'])
-  echo $this->Html->link('Create new album',array('controller'=>'albums','action'=>'add'));?>
   <div class="album">
     <ul>
     <?php foreach ($user['Album'] as $album) :
