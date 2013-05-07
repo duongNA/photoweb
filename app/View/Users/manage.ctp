@@ -1,13 +1,14 @@
+<div class="manage" id="users">
+<div class="search">
 <?php
   echo $this->Form->create();
-  echo $this->Form->input('searchstring');
+  echo $this->Form->input('searchstring',array('label'=>'','placeholder'=>'Search string'));
   echo $this->Form->end('Search');
 ?>
+</div>
+<h1 class="manage-title">User Management</h1>
 <table>
   <tr>
-    <th>
-      ID
-    </th>
     <th>
       User name
     </th>
@@ -27,8 +28,6 @@
     <?php foreach($users as $user): ?>
       <tr>
 
-        <td>
-        </td>
         <td>
           <?php echo $this->Html->link($user['User']['username'],array('controller'=>'users','action'=>'view',$user['User']['id'])) ; ?>
         </td>
@@ -61,3 +60,4 @@
     <?php endforeach ?>
 </table>
 <?php echo $this->Paginator->numbers();?>
+</div>

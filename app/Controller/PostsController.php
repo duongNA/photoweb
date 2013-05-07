@@ -5,6 +5,12 @@ class PostsController extends AppController{
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('browse');
+	    $this->set('album',$this->Post->Album->find('list',array(
+       		'conditions'=>array(
+        	'Album.user_id'=>$this->Auth->user('id')),
+      		'fields'=>array('title')
+      		))
+	    );
 	}
 
 	/**
@@ -71,63 +77,45 @@ class PostsController extends AppController{
 			throw new NotFoundException(__('Invalid post'));
 		}
 		
+		$post['Post']['viewed']++;
+
+		$this->Post->save($post);
+
+		// Find all post in the same album.
+		$this->set('related',$this->Post->find('all',array(
+      			'conditions'=>array(
+      				'Post.album_id'=>$post['Album']['id'],
+      				'Post.status'=>1),
+      			'limit'=>9
+      		))
+		);
+
+
+
 		if ($this->request->is('ajax')) {
 			$this->layout = 'ajax';
 		}
 
+		//Current viewing post.
 		$this->set('post',$post);
+
+		//Posts in the same album.
+		// $this->set('albumPost',);
 	}
 
 	/**
 	 * Add new post if album_id is present new post will be added to the album else
 	 	* new album will be created.
-	 * Status: On going
+	 * Status: Done
 	 * @param [type] $album_id [description]
 	 */
 	public function add($album_id=null){
-		$this->layout = 'ajax';
-		$this->loadModel('Album');
-		$this->loadModel('Category');
-			
-		$albumList = $this->Album->find('list');
-		$this->set('albumList', $albumList);
-			
-		$this->Category->recursive = -1;
-		$categoryList = $this->Category->find('list', array('fields' => array('id', 'name')));
-		$this->set('categoryList', array_values($categoryList));
-		debug($categoryList);
-
 		if($this->request->is('post')) {
 
 			$this->Post->create();
-				
-			if ($this->data['Category']['categories']) {
-
-				$tags = explode(',',$this->data['Category']['categories']);
-				debug($tags);
-				foreach($tags as $_tag) {
-					$_tag = strtolower(trim($_tag));
-					if ($_tag) {
-						// check if the tag exists
-						$this->Post->Category->recursive = -1;
-						$tag = $this->Post->Category->findByName($_tag);
-
-						debug($tag);
-
-						if ($tag) {
-							// use current tag
-							$this->request->data['Category']['Category'][$tag['Category']['id']] = $tag['Category']['id'];
-
-						}
-					}
-				}
-			}
-
+			
 			//Add post default status
 			$this->request->data['Post']['status']=1;
-
-			//Add post like count
-			$this->request->data['Post']['liked']=0;
 
 			//Add post view count
 			$this->request->data['Post']['viewed']=0;
@@ -135,24 +123,32 @@ class PostsController extends AppController{
 			//Add owner of this post
 			$this->request->data['Post']['user_id']=$this->Auth->user('id');
 
-			// Add owner of this album
-			if (!$this->request->data['Album']['id']) {
-				if (!$this->request->data['Album']['title']) {
+			// Add owner of this album if when user choose schema create new album
+			if ($this->request->data['Post']['album_id'] == null) {
+				
+				//This one is unnecessary because Album Title is a required field.
+				/*if (!$this->request->data['Album']['title']) {
 					$this->request->data['Album']['title'] = 'untitle';
-				}
+				}*/
 
 				$this->request->data['Album']['user_id']=$this->Auth->user('id');
 
 				//Add album status
 				$this->request->data['Album']['status']=1;
-			}
 
-			// if($this->Post->save($this->request->data)){
-			if($this->Post->saveAssociated($this->request->data)) {
-				$this->Session->setFlash(__('Your post have been saved'));
-				$this->redirect(array('action'=>'index'));
+				if($this->Post->saveAssociated($this->request->data)) {
+					$this->Session->setFlash(__('Your post have been saved'));
+					$this->redirect(array('action'=>'index'));
+				} else {
+					$this->Session->setFlash(__('Unable to save post'));
+				}
 			} else {
-				$this->Session->setFlash(__('Unable to save post'));
+				if($this->Post->save($this->request->data)){
+					$this->Session->setFlash(__('Your post have been saved'));
+					$this->redirect(array('action'=>'index'));
+				} else {
+					$this->Session->setFlash(__('Unable to save post'));	
+				}
 			}
 		}
 	}
@@ -214,11 +210,6 @@ class PostsController extends AppController{
 			throw new MethodNotAllowedException();
 		}
 
-		// $this->request->data['Post']['status']=0;
-		// $this->request->data['Comment']['status']=0;
-		// if($this->Post->delete($id))
-		// if($this->Post->save($this->request->data)){
-		// if($this->Post->saveAssociated($this->request->data)){
 		if($this->Post->Comment->updateAll(array("Comment.status"=>0),array("Comment.post_id"=> $id)) &&
 				$this->Post->updateAll(array("Post.status"=>0),array("Post.id"=> $id)))
 		{
@@ -266,23 +257,6 @@ class PostsController extends AppController{
 		$this->set('posts',$this->paginate());
 	}
 
-	/**
-	 * Like action
-	 * Status: Ongoing
-	 * @return [type] [description]
-	 */
-	public function like() {
-
-	}
-
-	/**
-	 * Unlike action
-	 * Status: Ongoing
-	 * @return [type] [description]
-	 */
-	public function unlike() {
-
-	}
 
 	public function browse($categoryId = null) {
 		
