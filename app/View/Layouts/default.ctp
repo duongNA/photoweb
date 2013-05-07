@@ -51,9 +51,6 @@ echo $this->Html->script('fancybox/lib/jquery.mousewheel-3.0.6.pack.js');
 echo $this->Html->script('fancybox/source/jquery.fancybox.pack.js');
 echo $this->Html->css('fancybox/source/jquery.fancybox');
 
-
-
-
 // 		echo $this->Html->script('jquery.masonry.min');
 // 		echo $this->Html->script('modernizr-2.5.3.min');
 // 		echo $this->Html->script('script');
@@ -63,52 +60,48 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 <body>
 	<div id="container">
 		<div id="header">
-			<!-- <div id="header-container"> -->
-			<!-- 	<div id="search-bar">
-					<form>
-						<input type="text" name="key" placeholder="search">
-					</form>
-				</div> -->
-				<div class="top-menu" id="main-menu">
-					<ul>
-						<li><?php echo $this->Html->link('Home',array('controller'=>'posts','action'=>'index'), array('title' => 'Home'));?>
-						</li>
-						<li><?php echo $this->Html->link('Hot',array('controller'=>'posts','action'=>'hot'));?>
-						</li>
-						<li>
-							<!-- <input type="button" id="btn-add-new-post" value="Add new post"> -->
-							<?php echo $this->Html->link('Add new post',array('controller'=>'posts','action'=>'add'));?>
-						</li>
-						<?php
-						if($this->Session->check('Auth.User')){
-							if($this->Session->read('Auth.User.role')=='admin'){
-								echo "<li>".$this->Html->link("Manage users",array('controller'=>'users','action'=>'manage'))."</li>";
-								echo "<li>".$this->Html->link("Manage posts",array('controller'=>'posts','action'=>'manage'))."</li>";
-								echo "<li>".$this->Html->link("Manage albums",array('controller'=>'albums','action'=>'manage'))."</li>";
-								// echo "<li>".$this->Html->link("Manage comments",array('controller'=>'comments','action'=>'manage'))."</li>";
-							}
-						}
-						?>
-					</ul>
-				</div>
+			<ul>
+				<li class="logo">
+					<a href="http://google.com.vn">
+						<span></span>
+						<b>Photos</b>
+					</a>
+				</li>
+				<li class="new">
+					<a href="http://google.com.vn">
+						<span></span>
+						<b>New</b>
+					</a>
+				</li>
+				<li class="popular">
+					<a href="http://google.com.vn">
+						<span></span>
+						<b>Popular</b>
+					</a>
+				</li>
+				<li class="search-button">
+					<a href="#">
+						<span></span> 
+						<input type="text" name="seachKey" autocomplete="off" placeholder="Search">
+					</a>
+				</li>
 
-				<div class="top-menu" id="user-menu">
-					<ul>
-						<?php if(!$this->Session->check('Auth.User')) {
-							echo "<li>".$this->Html->link('Log in',array('controller'=>'users','action'=>'login'))."</li>";
-							echo "<li>".$this->Html->link('Register',array('controller'=>'users','action'=>'add'))."</li>";
-						} else {
-							echo "Hello:";
-							echo '<li id="user-name">'.$this->Html->link($this->Session->read('Auth.User.username'), array('controller'=>'users','action'=>'view',$this->Session->read('Auth.User.id')))."</li>";
-							echo "<li>".$this->Html->link('Log out',array('controller'=>'users','action'=>'logout'))."</li>";
-						}
-						?>
-					</ul>
-				</div>
-				
-			<!-- </div> -->
+				<li class="power">
+					<a href="#">
+						<span></span>
+						<b>Power</b>
+					</a>
+				</li>
+
+				<li class="more">
+					<a href="#">
+						<span></span>
+						<b>More</b>
+					</a>
+				</li>
+			</ul>
 		</div>
-
+		<div id="header-space"></div>
 		<div id="content">
 
 			<?php echo $this->Session->flash(); ?>
