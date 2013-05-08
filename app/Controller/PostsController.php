@@ -4,7 +4,7 @@ class PostsController extends AppController{
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('browse');
+		$this->Auth->allow('browse', 'popular');
 	    $this->set('album',$this->Post->Album->find('list',array(
        		'conditions'=>array(
         	'Album.user_id'=>$this->Auth->user('id')),
@@ -58,7 +58,7 @@ class PostsController extends AppController{
 	 * @param  [type] $id [description]
 	 * @return [type]     [description]
 	 */
-	public function view($id=null){
+	public function view($id = null){
 		//When no post_id is specificed then throw exception
 		if(!$id){
 			throw new NotFoundException(__('Invalid post'));
@@ -89,7 +89,6 @@ class PostsController extends AppController{
       			'limit'=>9
       		))
 		);
-
 
 
 		if ($this->request->is('ajax')) {
@@ -262,7 +261,7 @@ class PostsController extends AppController{
 		
 		$pagination = array(
 					'conditions' => array('Post.status' => 1),
-					'limit' => 10,
+					'limit' => 20,
 					'order' => array('Post.created' => 'DESC')
 		);
 
@@ -273,6 +272,17 @@ class PostsController extends AppController{
 
 		$this->paginate = $pagination;
 
+		$this->set('posts', $this->paginate('Post'));
+	}
+	
+	public function popular() {
+		$pagination = array(
+					'conditions' => array('Post.status' => 1),
+					'limit' => 20,
+					'order' => array('Post.viewed' => 'DESC')
+		);
+		
+		$this->paginate = $pagination;
 		$this->set('posts', $this->paginate('Post'));
 	}
 }

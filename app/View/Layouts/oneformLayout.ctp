@@ -59,55 +59,6 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 </head>
 <body>
 	<div id="container">
-		<div id="header">
-			<ul>
-				<li class="logo">
-					<a href="">
-						<span></span>
-						<b>Photos</b>
-					</a>
-				</li>
-				<li class="new">
-					<a href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'browse')); ?>">
-						<span></span>
-						<b>New</b>
-					</a>
-				</li>
-				<li class="popular">
-					<a href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'popular')); ?>">
-						<span></span>
-						<b>Popular</b>
-					</a>
-				</li>
-				<li class="search-button">
-					<a href="#">
-						<span></span> 
-						<input type="text" name="seachKey" autocomplete="off" placeholder="Search">
-					</a>
-				</li>
-
-				<li class="power">
-					<?php if ($this->Session->check('Auth.User')): ?>
-						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'login')); ?>">
-							<span></span>
-							<b>Logout</b>
-						</a>
-					<?php else: ?>
-						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'logout')); ?>">
-							<span></span>
-							<b>Login</b>
-						</a>
-					<?php endif; ?>
-				</li>
-
-				<li class="more">
-					<a href="#">
-						<span></span>
-						<b>More</b>
-					</a>
-				</li>
-			</ul>
-		</div>
 		<div id="header-space"></div>
 		<div id="content">
 
@@ -115,12 +66,8 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 
 			<?php echo $this->fetch('content'); ?>
 		</div>
-		<div id="footer">
-			<?php echo "Copyright © 2013, Group 9. All rights reserved"?>
-		</div>
 
 	</div>
-	<!-- <?php echo $this->element('sql_dump'); ?> -->
 	<?php echo $this->Facebook->init(); ?>
 </body>
 </html>

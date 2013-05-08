@@ -15,15 +15,7 @@ class User extends AppModel{
 							'fields'=> array (
 									'dir' => 'avatar_dir',
 							),
-							'thumbnailSizes' => array(
-									'xvga' => '1024x768',
-									'vga' => '640x480',
-									'thumb' => '80x80'
-							)
 					)
-						
-
-
 			)
 	);
 
