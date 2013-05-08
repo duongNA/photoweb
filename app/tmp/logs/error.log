@@ -7595,3 +7595,192 @@ Stack Trace:
 #6 C:\xampp\htdocs\git\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #7 {main}
 >>>>>>> 40c841bd8cdea681271e03a575e845727d92a6b4
+2013-05-08 07:14:52 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:15:45 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:19:18 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:24:07 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:24:20 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:26:35 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:27:18 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:28:31 Error: [MissingHelperException] Helper class postHelper could not be found.
+Exception Attributes: array (
+  'class' => 'postHelper',
+  'plugin' => false,
+)
+Request URL: /photo/posts/view/76
+Stack Trace:
+#0 D:\xampp\htdocs\photo\lib\Cake\View\HelperCollection.php(62): HelperCollection->load('post')
+#1 D:\xampp\htdocs\photo\lib\Cake\View\View.php(835): HelperCollection->__isset('post')
+#2 D:\xampp\htdocs\photo\app\View\Posts\view.ctp(69): View->__get('post')
+#3 D:\xampp\htdocs\photo\lib\Cake\View\View.php(947): include('D:\xampp\htdocs...')
+#4 D:\xampp\htdocs\photo\lib\Cake\View\View.php(909): View->_evaluate('D:\xampp\htdocs...', Array)
+#5 D:\xampp\htdocs\photo\lib\Cake\View\View.php(470): View->_render('D:\xampp\htdocs...')
+#6 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(947): View->render(NULL, NULL)
+#7 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(193): Controller->render()
+#8 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#9 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#10 {main}
+2013-05-08 07:28:52 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:29:50 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:30:12 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:30:47 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:31:05 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:33:41 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:34:30 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:36:13 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-08 07:38:58 Error: [NotFoundException] Invalid post
+Request URL: /photo/posts/view/76
+Stack Trace:
+#0 [internal function]: PostsController->view('76')
+#1 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#2 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2013-05-08 09:08:13 Error: [NotFoundException] Invalid album
+Request URL: /photo/albums/view
+Stack Trace:
+#0 [internal function]: AlbumsController->view()
+#1 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(AlbumsController), Array)
+#2 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AlbumsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2013-05-08 09:08:16 Error: [NotFoundException] Invalid album
+Request URL: /photo/albums/view/4
+Stack Trace:
+#0 [internal function]: AlbumsController->view('4')
+#1 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(AlbumsController), Array)
+#2 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(AlbumsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}
+2013-05-08 09:21:44 Error: [NotFoundException] Invalid post
+Request URL: /photo/posts/view/76
+Stack Trace:
+#0 [internal function]: PostsController->view('76')
+#1 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#2 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#3 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#4 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#5 {main}

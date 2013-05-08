@@ -47,6 +47,8 @@ class UsersController extends AppController{
    * @return [type] [description]
    */
    public function login() {
+   	$this->layout = 'largeLayout';
+   	
     if ($this->request->is('post')) {
         if ($this->Auth->login()) {
             $this->redirect($this->Auth->redirect());
@@ -109,6 +111,8 @@ class UsersController extends AppController{
    * @param [type] $id [description]
    */
   public function add($id=null){
+  	$this->layout = 'largeLayout';
+  	
     if($this->request->is('post')){
       $this->User->create();
 

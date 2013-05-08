@@ -1139,6 +1139,77 @@ div .fb-login{
 /** CSS for Comment**/
 
 /* CSS for Post */
+#post-sidebar {
+	width: 320px;
+	float: right;
+}
+
+#post-sidebar .owner {
+	min-height: 110px;
+}
+
+#post-sidebar h3 {
+	font-size: 14px;
+	font-weight: bold;	
+}
+
+#post-sidebar .owner .ava-thumb > img {
+	width: 60px;
+	height: 60px;
+	
+}
+
+#post-sidebar .owner .ava-thumb {
+	width: 60px;
+	height: 60px;
+	float: left;
+}
+
+#post-sidebar .owner .info {
+	padding-left: 65px;
+}
+
+#post-sidebar .post-related {
+	border-top: 2px solid #dddddd;
+	clear: both;
+	padding-top: 10px;
+}
+
+#post-sidebar .post-related ul {
+	margin: 0px;
+}
+
+#post-sidebar .post-related ul li {
+	list-style: none;
+	display: block;
+	float: left;
+	margin: 0px;
+	margin-right: 2px;	
+}
+
+#post-sidebar .post-related ul li img {
+	width: 100px;
+	height: 75px;
+
+}
+
+.post-content {
+	padding-right: 330px;
+	padding-top: 10px;	
+}
+
+.post-content #facebook-like {
+	display: inline-block;
+}
+
+.post-content #post-action {
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+.post-content .post-image {
+	margin-bottom: 20px;
+}
 
 div.post{
 	margin-left: 140px;
@@ -1176,16 +1247,17 @@ div.post .owner div.info #title{
 	font-size: 16pt;
 }
 
-div.post-related{
-	float: right;
-	margin-right: 25px;
-}
+/* div.post-related{ */
+/* 	float: right; */
+/* 	margin-right: 25px; */
+/* } */
 
-div.post-related img{
-	height: 100px;
-	width: 100px;
+/* div.post-related img{ */
+/* 	height: 100px; */
+/* 	width: 100px; */
 
-}
+/* } */
+
 
 div.post-add-form{
 	border-left: 1px solid black;
@@ -1401,3 +1473,21 @@ div.box img {
 	margin-bottom: 10px;
 	padding: 0;
 }
+
+/** album list **/
+ul#album-list li {
+	list-style: none;
+	display: block;
+	float: left;
+	width: 220px;
+	height: 150px;
+	overflow: hidden;
+	margin-right: 5px;
+	margin-left: 5px
+}
+
+ul#album-list li img {
+	min-width: 220px;
+	min-height: 150px;	
+}
+

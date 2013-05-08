@@ -23,7 +23,8 @@ class AlbumsController extends AppController{
    * @return [type] [description]
    */
   public function index(){
-
+  	$albums = $this->Album->find('all');
+	$this->set('albums', $albums);
   }
 
   /**

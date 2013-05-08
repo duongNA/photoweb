@@ -1,91 +1,52 @@
 
-
-<!-- Here is region to populate all post in the same album -->
-<div class="post-related">
-	<table>
-		<tr class="rows-1">
-			<?php
-			if(count($related)>0){
-			 	echo "<td>";
-		 	  	echo $this->Html->image('/files/post/image/'.$related[0]['Post']['image_dir'].'/'.$related[0]['Post']['image'])."<br>";
-		 	  	echo "</td>";
-		 	}
-
-			if(count($related)>1){
-				echo "<td>"; 
-				echo $this->Html->image('/files/post/image/'.$related[1]['Post']['image_dir'].'/'.$related[1]['Post']['image'])."<br>";
-				echo "</td>";
-			}
-
-			if(count($related)>2){
-				echo "<td>"; 
-				echo $this->Html->image('/files/post/image/'.$related[2]['Post']['image_dir'].'/'.$related[2]['Post']['image'])."<br>";
-				echo "</td>";
-			}?>	
-		</tr>
-
-		<tr class="rows-2">
-		<?php
-			if(count($related)>3){
-				echo "<td>"; 
-			 	echo $this->Html->image('/files/post/image/'.$related[3]['Post']['image_dir'].'/'.$related[3]['Post']['image'])."<br>"; 
-			 	echo "</td>";
-			} 
-			if(count($related)>=4){
-				echo "<td>"; 
-				echo $this->Html->image('/files/post/image/'.$related[4]['Post']['image_dir'].'/'.$related[4]['Post']['image'])."<br>";
-				echo "</td>";
-			}	
-			if(count($related)>5){
-				echo "<td>"; 
-				echo $this->Html->image('/files/post/image/'.$related[5]['Post']['image_dir'].'/'.$related[5]['Post']['image'])."<br>";
-				echo "</td>";
-			}?>	
-			
-		</tr>
-		<tr class="rows-3">
-		<?php
-			if(count($related)>6){
-				echo "<td>"; 
-				echo $this->Html->image('/files/post/image/'.$related[6]['Post']['image_dir'].'/'.$related[6]['Post']['image'])."<br>";
-				echo "</td>";
-			}
-			if(count($related)>7){
-				echo "<td>"; 
-				echo $this->Html->image('/files/post/image/'.$related[7]['Post']['image_dir'].'/'.$related[7]['Post']['image'])."<br>"; 
-				echo "</td>"; 
-			}
-			if(count($related)>8){
-				echo "<td>"; 
-				echo $this->Html->image('/files/post/image/'.$related[8]['Post']['image_dir'].'/'.$related[8]['Post']['image'])."<br>";
-				echo "</td>";
-			}?>	
-		</tr>
-	</table>	
-</div>
-
-<div class="post">
-<div class="post-image">
-	<?php echo $this->Html->image('/files/post/image/'.$post['Post']['image_dir'].'/'.$post['Post']['image']); ?>
-</div>
-
-<div class="owner">
-	<div class="ava-thumb">
-		<?php echo $this->Html->image("/files/user/avatar/".$post['PostOwner']['avatar_dir']."/".$post['PostOwner']['avatar']) ?>
-	</div>
-	<div class="info">
+<div id="post-sidebar">
+	<!-- Here is region to populate all post in the same album -->
+	<div class="owner">
+		<h3>Author</h3>
 		
-		<h1 id="title"><?php echo $post['Post']['title']; echo '<br>'; ?> </h1>
-		<h1 id="user-name"><?php echo 'By: '; echo $this->Html->link($post['PostOwner']['username'],array('controller'=>'users','action'=>'view',$post['PostOwner']['id']));?></h1>
+		<div class="ava-thumb">
+			<?php echo $this->Html->image("/files/user/avatar/".$post['PostOwner']['avatar_dir']."/".$post['PostOwner']['avatar']) ?>
+		</div>
+		<div class="info">
+			<?php echo $this->Html->link($post['PostOwner']['username'], array('controller' => 'users', 'action' => 'view', $post['PostOwner']['id']))?>
+			<div>
+				<em>posts at</em> <?php echo $post['Post']['created'];?>
+			</div>
+		</div>
+		
+	</div>
+
+	<div class="post-related">
+		<h3>Images in the same album</h3>
+		<ul>
+			<?php foreach ($related as $relatedPost): ?>
+				<li>
+					<a href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'view', $relatedPost['Post']['id'])); ?>" title="<?php echo $relatedPost['Post']['title']; ?>"> 
+						<?php echo $this->Html->image('/files/post/image/'.$relatedPost['Post']['image_dir'].'/'.$relatedPost['Post']['image']); ?>
+					</a>
+			</li>
+			<?php endforeach; ?>
+		</ul>
 	</div>
 </div>
 
-<div id="facebook-like">
-	<?php echo $this->Facebook->like(); ?>
-</div>
+<div class="post-content">
+	<h2><?php echo $post['Post']['title']; ?></h2>
+	<div id="post-action">
+		<div id="facebook-like">
+			<?php echo $this->Facebook->like(); ?>
+		</div>
+		<?php echo $this->Form->postLink('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('confirm' => "Do you want to delete this post?"))?>
+		
+	</div>
+	<div class="post-image">
+		<?php echo $this->Html->image('/files/post/image/'.$post['Post']['image_dir'].'/'.$post['Post']['image']); ?>
+	</div>
 
-<div id="facebook-comments">
-	<?php echo $this->Facebook->comments(); ?>
-</div>
+	
+
+	<div id="facebook-comments">
+		<?php echo $this->Facebook->comments(); ?>
+	</div>
 </div>
 
