@@ -24,7 +24,7 @@
   <?php foreach ($posts as $post): ?>
   <div class="box">
     <div class="box-content">
-      <a rel="browse" href="<?php echo $this->Html->url("/files/post/image/".$post['Post']['image_dir']."/".$post['Post']['image']); ?>" class="fancybox" title="<?php echo $post['Post']['title']; ?>">
+      <a rel="fancybox" href="<?php echo $this->Html->url("/files/post/image/".$post['Post']['image_dir']."/".$post['Post']['image']); ?>" class="fancybox" title="<?php echo $post['Post']['title']; ?>">
         <?php echo $this->Html->image("/files/post/image/".$post['Post']['image_dir']."/".$post['Post']['image']); ?>
       </a>
       <div class="meta hide">
