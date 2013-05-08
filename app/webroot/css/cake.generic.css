@@ -83,48 +83,165 @@ p {
 /** Layout **/
 #container {
 	text-align: left;
+	padding-bottom: 50px;
+	background-color: #E9E9E9;
 }
 
 #header {
-	padding: 10px 20px;
-	background-color: #E68004;
-	height: 30px;
+	padding: 0px;
+	width: 60px;
 	line-height: 30px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	background-color: #ffffff;
+	height: 1900px;
+	border-right: 1px solid #dddddd;
+	overflow: hidden;
+	z-index: 10;
+	
+	-webkit-transition: width 0.4s;
+	moz-transition: width 0.4s; 
+	-o-transition: width 0.4s;
+	transition: width 0.4s;
 }
+
+#header.header-expand {
+	width: 180px;	
+}
+
+#header ul, #header li {
+	margin: 0;
+}
+
+#header li {
+	position: relative;
+	height: 50px;
+	width: 180px;
+	font-size: 13px;
+	line-height: 50px;
+}
+
+#header li span {
+	width: 50px;
+	height: 50px;
+	margin-right: 0px;
+	margin-left: 5px;
+	overflow: hidden;
+	display: inline-block;
+	vertical-align: middle;
+}
+
+#header li a {
+	display: block;
+}
+
+#header li a b {
+	display: inline-block;	
+	color: black;
+}
+
+#header li a:hover b {
+	color: #008ed3;	
+}
+
+#header li a b {
+	text-indent: 10px;
+	font-weight: normal;
+	display: inline-block;
+	color: #333;
+}
+
+/* set button images of buttons on header */
+/* logo */
+#header li.logo {
+	border-bottom: 2px solid #dddddd;	
+}
+#header li.logo a span {
+	background: no-repeat url('../img/icons.png') 0 0;	
+}
+#header li.logo a:hover span {
+	background: no-repeat url('../img/icons.png') -50px 0px;	
+}
+
+/* new */
+#header li.new a span {
+	background: no-repeat url('../img/icons.png') 0px -200px;
+}
+#header li.new a:hover span {
+	background: no-repeat url('../img/icons.png') -50px -200px;
+}
+
+/* popular */
+#header li.popular a span {
+	background: no-repeat url('../img/icons.png') 0px -150px;
+}
+#header li.popular a:hover span {
+	background: no-repeat url('../img/icons.png') -50px -150px;
+}
+
+/* search-button */
+#header li.search-button span {
+	background: no-repeat url('../img/icons.png') 0px -350px;
+}
+#header li.search-button a:hover span {
+	background: no-repeat url('../img/icons.png') -50px -350px;
+}
+#header li.search-button a input {
+	width: 100px;
+	font-size: 13px;
+	padding: 2px 3px;
+	display: inline-block;
+	margin-left: 5px;
+}
+
+/* power */
+#header li.power span {
+	background: no-repeat url('../img/icons.png') 0px -650px;
+}
+#header li.power a:hover span {
+	background: no-repeat url('../img/icons.png') -50px -650px;
+}
+#header li.power {
+	border-bottom: 2px solid #dddddd;	
+}
+
+
+
 
 #header h1 {
 	line-height: 20px;
 	background: #003d4c url('../img/cake.icon.png') no-repeat left;
-	color: #fff;
+	color: black;
 	padding: 0px 30px;
 }
 
 #header h1 a {
-	color: #fff;
+	color: #blue;
 	background: #003d4c;
 	font-weight: normal;
 	text-decoration: none;
 }
 
 #header h1 a:hover {
-	color: #fff;
 	background: #003d4c;
 	text-decoration: underline;
 }
 
-/** header container **/
-#header-container {
-	width: 920px;
-	margin: 0 auto;
+/** header space **/
+#header-space {
+	background: transparent;
+	min-height: 30px;
+	
 }
 
 #content {
-	margin-top: 35px;
-	background: #fff;
+	margin-top: 0px;
+	background: transparent;
 	clear: both;
-	color: #333;
-	padding: 10px 20px 40px 20px;
+	color: #333;	
 	overflow: auto;
+	padding-left: 60px;
 }
 
 #footer {
@@ -845,7 +962,6 @@ pre {
 }
 
 #header ul li a {
-	color: #FFFFFF;
 	text-decoration: none;
 }
 
@@ -1179,16 +1295,20 @@ div.iso-element img {
 }
 
 /************ masonry **********/
+#main-container {
+	width: 955px;
+	margin: auto;	
+}
+
 .box {
 	display: block;
 	float: left;
-	margin: 5px;
+	margin: 4px;
 	padding: 0px;
-	border: 1px solid black;
 }
 
 div.box img {
-	width: 280px;
+	width: 230px;
 	height: auto;
 	display: block;
 }

@@ -6690,6 +6690,50 @@ Stack Trace:
 #5 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
 #6 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #7 {main}
+<<<<<<< HEAD
+2013-05-03 09:20:21 Error: [MissingControllerException] Controller class BrowseController could not be found.
+Exception Attributes: array (
+  'class' => 'BrowseController',
+  'plugin' => NULL,
+)
+Request URL: /photo/browse
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-03 09:20:40 Error: [NotFoundException] Not Found
+Request URL: /photo/posts/browse/page:3
+Stack Trace:
+#0 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(1073): PaginatorComponent->paginate('Post', Array, Array)
+#1 D:\xampp\htdocs\photo\app\Controller\PostsController.php(302): Controller->paginate('Post')
+#2 [internal function]: PostsController->browse()
+#3 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#4 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#5 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#6 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2013-05-03 09:24:59 Error: [NotFoundException] Not Found
+Request URL: /photo/posts/browse/page:3
+Stack Trace:
+#0 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(1073): PaginatorComponent->paginate('Post', Array, Array)
+#1 D:\xampp\htdocs\photo\app\Controller\PostsController.php(302): Controller->paginate('Post')
+#2 [internal function]: PostsController->browse()
+#3 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#4 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#5 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#6 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2013-05-07 08:46:03 Error: [NotFoundException] Not Found
+Request URL: /photo/posts/browse/page:3
+Stack Trace:
+#0 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(1073): PaginatorComponent->paginate('Post', Array, Array)
+#1 D:\xampp\htdocs\photo\app\Controller\PostsController.php(302): Controller->paginate('Post')
+#2 [internal function]: PostsController->browse()
+#3 D:\xampp\htdocs\photo\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#4 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#5 D:\xampp\htdocs\photo\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#6 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+=======
 2013-05-03 13:04:13 Error: [MissingTableException] Table categories for model Category was not found in datasource default.
 Exception Attributes: array (
   'table' => 'categories',
@@ -7223,6 +7267,7 @@ Stack Trace:
 #3 C:\xampp\htdocs\git\lib\Cake\Core\App.php(899): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+<<<<<<< HEAD
 2013-05-06 09:08:25 Error: [NotFoundException] Not Found
 Request URL: /git/posts/index/page:3
 Stack Trace:
@@ -7256,3 +7301,96 @@ Stack Trace:
 #5 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
 #6 C:\xampp\htdocs\git\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #7 {main}
+=======
+>>>>>>> 2ae847b8cc4727b118ca4b7345430d760d0a5770
+2013-05-07 15:46:36 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-07 15:47:53 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-07 15:47:55 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-07 15:47:57 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-07 15:47:59 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-07 15:48:03 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-07 15:48:05 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-07 15:48:24 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-07 15:48:40 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+2013-05-07 15:48:42 Error: [MissingControllerException] Controller class ImageController could not be found.
+Exception Attributes: array (
+  'class' => 'ImageController',
+  'plugin' => NULL,
+)
+Request URL: /photo/image/icons.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}
+>>>>>>> a29bcc22bc96b98d3939b425362c1f3390559662
