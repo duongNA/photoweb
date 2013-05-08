@@ -1129,7 +1129,7 @@ div .fb-login{
 /* CSS for Post */
 
 div.post{
-	margin-left: 25px;
+	margin-left: 140px;
 	width: 60%;
 }
 
@@ -1138,6 +1138,8 @@ div.post .post-image{
 	margin-bottom: 25px;
 }
 div.post .post-image img{
+	border: 8px solid white;
+	border-radius: 3px;
 	max-width: 750px;
 }
 

@@ -7540,3 +7540,36 @@ Stack Trace:
 #4 [internal function]: App::shutdown()
 #5 {main}
 >>>>>>> f7c20356b8a59261236a392a7253417ff7ded61e
+2013-05-08 05:49:04 Error: [NotFoundException] Not Found
+Request URL: /git/posts/index/page:3
+Stack Trace:
+#0 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(1073): PaginatorComponent->paginate(NULL, Array, Array)
+#1 C:\xampp\htdocs\git\app\Controller\PostsController.php(52): Controller->paginate()
+#2 [internal function]: PostsController->index()
+#3 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#4 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#5 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#6 C:\xampp\htdocs\git\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2013-05-08 05:51:24 Error: [NotFoundException] Not Found
+Request URL: /git/posts/popular/page:3
+Stack Trace:
+#0 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(1073): PaginatorComponent->paginate('Post', Array, Array)
+#1 C:\xampp\htdocs\git\app\Controller\PostsController.php(286): Controller->paginate('Post')
+#2 [internal function]: PostsController->popular()
+#3 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#4 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#5 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#6 C:\xampp\htdocs\git\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2013-05-08 06:01:11 Error: [NotFoundException] Not Found
+Request URL: /git/posts/popular/page:3
+Stack Trace:
+#0 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(1073): PaginatorComponent->paginate('Post', Array, Array)
+#1 C:\xampp\htdocs\git\app\Controller\PostsController.php(286): Controller->paginate('Post')
+#2 [internal function]: PostsController->popular()
+#3 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#4 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#5 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#6 C:\xampp\htdocs\git\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
