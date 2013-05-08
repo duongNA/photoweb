@@ -85,6 +85,7 @@ p {
 	text-align: left;
 	padding-bottom: 50px;
 	background-color: #E9E9E9;
+	min-height: 900px;
 }
 
 #header {
@@ -586,7 +587,7 @@ form .error,form .error-message {
 .message {
 	clear: both;
 	color: #fff;
-	font-size: 140%;
+	font-size: 100%;
 	font-weight: bold;
 	margin: 0 0 1em 0;
 	padding: 5px;
@@ -1351,4 +1352,38 @@ div.box img {
 
 .div-show {
 	display: block;
+}
+
+/** form panel: form for login and register **/
+#form-panel {
+	width: 420px;
+	margin: auto;
+	background-color: #ffffff;
+	padding: 30px 40px;
+	border: 1px solid #dedede;
+	line-height: 10px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	text-align: center;
+}
+
+#form-panel h1 {
+	font-size: 23px;
+	font-weight: bold;
+	margin-bottom: 40px;
+}
+
+#form-panel input[type=text],  #form-panel input[type=password], #form-panel input[type=email] {
+	margin: 0px;
+	padding: 2px 5px;
+	font-size: 20px;
+	width: 325px;
+	color: #777777;	
+}
+
+
+#form-panel div.input {
+	margin-bottom: 10px;
+	padding: 0;
 }
