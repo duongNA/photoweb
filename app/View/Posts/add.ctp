@@ -1,4 +1,3 @@
-<div class="post-add-form">
 <?php
 echo $this->Form->create('Post',array('type'=>'file'));?>
 
@@ -13,14 +12,14 @@ echo $this->Form->create('Post',array('type'=>'file'));?>
 
 <div class="new">
   <?php
-    echo $this->Form->input('Album.title',array('label'=>'Album title'));
+    echo $this->Form->input('Album.title',array('label'=>'Album title', 'class' => 'medium', 'placeholder' => 'Album title'));
     echo $this->Form->button('Add to existing',array('type'=>'button','id'=>'choose','class'=>'custom-button'));  
   ?>
 </div>
 <?php
 
-  echo $this->Form->input('Post.title', array('label'=>'Post title'));
-  echo $this->Form->input('Post.image',array('type'=>'file','label'=>'Choose image from your computer'));
+  echo $this->Form->input('Post.title', array('label'=>'Post title', 'class' => 'medium', 'placeholder' => 'Post title'));
+  echo $this->Form->input('Post.image',array('type'=>'file','label'=>'Choose image from your computer', 'class' => 'medium'));
 ?>
 <div class="form-buttons">
 <?php 
@@ -28,7 +27,7 @@ echo $this->Form->create('Post',array('type'=>'file'));?>
   echo $this->Form->button('Cancel',array('type'=>'reset','class'=>'custom-button','id'=>'cancel'))."<br>";
 ?>
 </div>
-</div>
+
 
 
 <script type="text/javascript">

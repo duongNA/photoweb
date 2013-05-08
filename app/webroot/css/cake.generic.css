@@ -245,6 +245,18 @@ p {
 	padding-left: 60px;
 }
 
+#content-wrapper {
+	width: 920px;
+	margin: auto;
+	background-color: white;
+	min-height: 700px;	
+	padding: 10px 20px;
+}
+
+input.medium {
+	width: 400px;
+}
+
 #footer {
 	clear: both;
 	padding: 6px 10px;

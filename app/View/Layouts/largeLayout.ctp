@@ -111,11 +111,9 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 		<div id="header-space"></div>
 		<div id="content">
 
-			<div id="content-wrapper">
-				<?php echo $this->Session->flash(); ?>
+			<?php echo $this->Session->flash(); ?>
 
-				<?php echo $this->fetch('content'); ?>
-			</div>
+			<?php echo $this->fetch('content'); ?>
 		</div>
 <!-- 		<div id="footer"> -->
 			<?php // echo "Copyright © 2013, Group 9. All rights reserved"?>

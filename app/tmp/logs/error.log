@@ -7468,3 +7468,22 @@ Stack Trace:
 #3 D:\xampp\htdocs\photo\lib\Cake\Core\App.php(899): App::_checkFatalError()
 #4 [internal function]: App::shutdown()
 #5 {main}
+2013-05-08 06:02:01 Error: Fatal Error (4): syntax error, unexpected ';', expecting ')' in [D:\xampp\htdocs\photo\app\Controller\PostsController.php, line 51]
+2013-05-08 06:02:01 Error: [FatalErrorException] syntax error, unexpected ';', expecting ')'
+Request URL: /photo/
+Stack Trace:
+#0 D:\xampp\htdocs\photo\lib\Cake\Error\ErrorHandler.php(183): ErrorHandler::handleFatalError(4, 'syntax error, u...', 'D:\xampp\htdocs...', 51)
+#1 [internal function]: ErrorHandler::handleError(4, 'syntax error, u...', 'D:\xampp\htdocs...', 51, Array)
+#2 D:\xampp\htdocs\photo\lib\Cake\Core\App.php(926): call_user_func('ErrorHandler::h...', 4, 'syntax error, u...', 'D:\xampp\htdocs...', 51, Array)
+#3 D:\xampp\htdocs\photo\lib\Cake\Core\App.php(899): App::_checkFatalError()
+#4 [internal function]: App::shutdown()
+#5 {main}
+2013-05-08 06:03:16 Error: [MissingControllerException] Controller class FilesController could not be found.
+Exception Attributes: array (
+  'class' => 'FilesController',
+  'plugin' => NULL,
+)
+Request URL: /photo/files/user/avatar/sample_avatar.png
+Stack Trace:
+#0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#1 {main}

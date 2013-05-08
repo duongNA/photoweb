@@ -43,10 +43,12 @@ class PostsController extends AppController{
 	 * @return [type] [description]
 	 */
 	public function index(){
+		$this->layout = "largeLayout";
 		$this->paginate = array (
 				'conditions' => array('Post.status' => 1),
 				'limit' => 20,
-				'order' => array('Post.created'=>'DESC')
+				'order' => array('Post.created'=>'DESC'),
+				'user_id' => $this->Auth->user('id')
 		);
 
 		$this->set('posts',$this->paginate());
@@ -258,7 +260,7 @@ class PostsController extends AppController{
 
 
 	public function browse($categoryId = null) {
-		
+		$this->layout = "largeLayout";
 		$pagination = array(
 					'conditions' => array('Post.status' => 1),
 					'limit' => 20,
@@ -276,6 +278,7 @@ class PostsController extends AppController{
 	}
 	
 	public function popular() {
+		$this->layout = "largeLayout";
 		$pagination = array(
 					'conditions' => array('Post.status' => 1),
 					'limit' => 20,
