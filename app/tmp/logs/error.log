@@ -7394,3 +7394,36 @@ Stack Trace:
 #0 D:\xampp\htdocs\photo\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
 #1 {main}
 >>>>>>> a29bcc22bc96b98d3939b425362c1f3390559662
+2013-05-08 05:04:47 Error: [NotFoundException] Not Found
+Request URL: /git/posts/index/page:3
+Stack Trace:
+#0 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(1073): PaginatorComponent->paginate(NULL, Array, Array)
+#1 C:\xampp\htdocs\git\app\Controller\PostsController.php(52): Controller->paginate()
+#2 [internal function]: PostsController->index()
+#3 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#4 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#5 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#6 C:\xampp\htdocs\git\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2013-05-08 05:17:05 Error: [NotFoundException] Not Found
+Request URL: /git/posts/index/page:3
+Stack Trace:
+#0 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(1073): PaginatorComponent->paginate(NULL, Array, Array)
+#1 C:\xampp\htdocs\git\app\Controller\PostsController.php(52): Controller->paginate()
+#2 [internal function]: PostsController->index()
+#3 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#4 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#5 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#6 C:\xampp\htdocs\git\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
+2013-05-08 05:18:10 Error: [NotFoundException] Not Found
+Request URL: /git/posts/index/page:3
+Stack Trace:
+#0 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(1073): PaginatorComponent->paginate(NULL, Array, Array)
+#1 C:\xampp\htdocs\git\app\Controller\PostsController.php(52): Controller->paginate()
+#2 [internal function]: PostsController->index()
+#3 C:\xampp\htdocs\git\lib\Cake\Controller\Controller.php(485): ReflectionMethod->invokeArgs(Object(PostsController), Array)
+#4 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(186): Controller->invokeAction(Object(CakeRequest))
+#5 C:\xampp\htdocs\git\lib\Cake\Routing\Dispatcher.php(161): Dispatcher->_invoke(Object(PostsController), Object(CakeRequest), Object(CakeResponse))
+#6 C:\xampp\htdocs\git\app\webroot\index.php(97): Dispatcher->dispatch(Object(CakeRequest), Object(CakeResponse))
+#7 {main}
