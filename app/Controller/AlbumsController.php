@@ -23,7 +23,10 @@ class AlbumsController extends AppController{
    * @return [type] [description]
    */
   public function index(){
-  	$albums = $this->Album->find('all');
+  	$albums = $this->Album->find('all', array(
+  				'conditions' => array('Album.user_id' => $this->Auth->user('id')),
+  				'order' => array('Album.created' => 'DESC')
+  			));
 	$this->set('albums', $albums);
   }
 
