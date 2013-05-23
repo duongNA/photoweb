@@ -7,9 +7,16 @@ $(function() {
 		mouseleave: function() {
 			$(this).removeClass('header-expand');			
 		}
-		
 	});
 	
+	$('.meta-target').live({
+		mouseenter: function() {
+			$(this).children('.meta').removeClass('transparent').addClass('opacity80');
+		},
+		mouseleave: function() {
+			$(this).children('.meta').removeClass('opacity80').addClass('transparent');
+		}
+	});
 });
 
 $(function() {

@@ -5,12 +5,14 @@ class PostsController extends AppController{
 	public function beforeFilter() {
 		parent::beforeFilter();
 		$this->Auth->allow('browse', 'popular');
-	    $this->set('album',$this->Post->Album->find('list',array(
-       		'conditions'=>array(
-        	'Album.user_id'=>$this->Auth->user('id')),
-      		'fields'=>array('title')
-      		))
-	    );
+
+		$album = $this->Post->Album->find('list', array(
+				'conditions' => array(
+						'Album.status' => 1,
+						'Album.user_id' => $this->Auth->user('id'))
+		));
+
+		$this->set('album', $album);
 	}
 
 	/**
@@ -31,7 +33,9 @@ class PostsController extends AppController{
 			$postId = $this->request->params['pass'][0];
 			if ($this->Post->isOwnedBy($postId, $user['id'])) {
 				return true;
+			} else {
 			}
+			return true;
 		}
 		return parent::isAuthorized($user);
 	}
@@ -78,18 +82,18 @@ class PostsController extends AppController{
 		if($post['Post']['status']==0){
 			throw new NotFoundException(__('Invalid post'));
 		}
-		
+
 		$post['Post']['viewed']++;
 
 		$this->Post->save($post);
 
 		// Find all post in the same album.
 		$this->set('related',$this->Post->find('all',array(
-      			'conditions'=>array(
-      				'Post.album_id'=>$post['Album']['id'],
-      				'Post.status'=>1),
-      			'limit'=>9
-      		))
+				'conditions'=>array(
+						'Post.album_id'=>$post['Album']['id'],
+						'Post.status'=>1),
+				'limit'=>9
+		))
 		);
 
 
@@ -111,10 +115,40 @@ class PostsController extends AppController{
 	 * @param [type] $album_id [description]
 	 */
 	public function add($album_id=null){
+		$this->loadModel('Album');
+		$this->loadModel('Category');
+
+		$this->Category->recursive = -1;
+		$categoryList = $this->Category->find('list', array('fields' => array('id', 'name')));
+		$this->set('categoryList', array_values($categoryList));
+
 		if($this->request->is('post')) {
 
 			$this->Post->create();
-			
+				
+			if ($this->data['Category']['categories']) {
+
+				$tags = explode(',',$this->data['Category']['categories']);
+				debug($tags);
+				foreach($tags as $_tag) {
+					$_tag = strtolower(trim($_tag));
+					if ($_tag) {
+						// check if the tag exists
+						$this->Post->Category->recursive = -1;
+						$tag = $this->Post->Category->findByName($_tag);
+
+						debug($tag);
+
+						if ($tag) {
+							// use current tag
+							$this->request->data['Category']['Category'][$tag['Category']['id']] = $tag['Category']['id'];
+
+						}
+					}
+				}
+			}
+
+				
 			//Add post default status
 			$this->request->data['Post']['status']=1;
 
@@ -126,7 +160,7 @@ class PostsController extends AppController{
 
 			// Add owner of this album if when user choose schema create new album
 			if ($this->request->data['Post']['album_id'] == null) {
-				
+
 				//This one is unnecessary because Album Title is a required field.
 				/*if (!$this->request->data['Album']['title']) {
 					$this->request->data['Album']['title'] = 'untitle';
@@ -148,7 +182,7 @@ class PostsController extends AppController{
 					$this->Session->setFlash(__('Your post have been saved'));
 					$this->redirect(array('action'=>'index'));
 				} else {
-					$this->Session->setFlash(__('Unable to save post'));	
+					$this->Session->setFlash(__('Unable to save post'));
 				}
 			}
 		}
@@ -161,7 +195,6 @@ class PostsController extends AppController{
 	 * @return [type]     [description]
 	 */
 	public function edit($id=null){
-
 		//Check post_id is passed
 		if(!$id) {
 			$this->Session->setFlash(__('Invalid Post'));
@@ -176,7 +209,7 @@ class PostsController extends AppController{
 		}
 
 		//Make sure that the post is still actived
-		if($post['Post']['status']==0) {
+		if($post['Post']['status'] == 0) {
 			throw new NotFoundException(__('Invalid Post'));
 		}
 
@@ -262,9 +295,9 @@ class PostsController extends AppController{
 	public function browse($categoryId = null) {
 		$this->layout = "largeLayout";
 		$pagination = array(
-					'conditions' => array('Post.status' => 1),
-					'limit' => 20,
-					'order' => array('Post.created' => 'DESC')
+				'conditions' => array('Post.status' => 1),
+				'limit' => 20,
+				'order' => array('Post.created' => 'DESC')
 		);
 
 		if ($categoryId != null) {
@@ -276,15 +309,15 @@ class PostsController extends AppController{
 
 		$this->set('posts', $this->paginate('Post'));
 	}
-	
+
 	public function popular() {
 		$this->layout = "largeLayout";
 		$pagination = array(
-					'conditions' => array('Post.status' => 1),
-					'limit' => 20,
-					'order' => array('Post.viewed' => 'DESC')
+				'conditions' => array('Post.status' => 1),
+				'limit' => 20,
+				'order' => array('Post.viewed' => 'DESC')
 		);
-		
+
 		$this->paginate = $pagination;
 		$this->set('posts', $this->paginate('Post'));
 	}

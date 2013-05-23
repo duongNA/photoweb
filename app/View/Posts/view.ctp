@@ -36,7 +36,16 @@
 		<div id="facebook-like">
 			<?php echo $this->Facebook->like(); ?>
 		</div>
-		<?php echo $this->Form->postLink('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('confirm' => "Do you want to delete this post?"))?>
+
+		<div>
+			<?php
+				if ($post['Post']['user_id'] == $user['id']) {
+					echo $this->Html->link('Edit', array('controller' => 'posts', 'action' => 'edit', $post['Post']['id']));
+					echo '&nbsp;';
+					echo $this->Form->postLink('Delete', array('controller' => 'posts', 'action' => 'delete', $post['Post']['id']), array('confirm' => "Do you want to delete this post?"));
+				}
+			?>
+		</div>
 		
 	</div>
 	<div class="post-image">

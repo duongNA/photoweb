@@ -36,7 +36,7 @@ a {
 
 a:hover {
 	color: #367889;
-	text-decoration: none;
+	text-decoration: underline;
 }
 
 a img {
@@ -1479,12 +1479,12 @@ ul#album-list li {
 	list-style: none;
 	display: block;
 	float: left;
-	width: 200px;
-	height: 150px;
+	width: 215px;
+	height: 160px;
 	overflow: hidden;
-	margin-right: 5px;
-	margin-left: 5px;
-	margin-bottom: 10px;
+	margin-right: 8px;
+	margin-left: 0px;
+	margin-bottom: 8px;
 	position: relative;
 }
 
@@ -1497,8 +1497,8 @@ ul#album-list div.album-title {
 }
 
 ul#album-list li img {
-	min-width: 200px;
-	min-height: 150px;	
+	min-width: 215px;
+	min-height: 160px;	
 }
 
 ul#album-list .tools a {
@@ -1514,11 +1514,49 @@ ul#album-list .tools span.edit-button {
 	width: 20px;
 }
 
-ul#album-list .tools span.delete-button {
-	background: no-repeat url('../img/google-icons.png') -161px -65px;
-	height: 12px;
-	top: 2px;
-	width: 10px;
-}		
+.float-left {
+	float: left;
 }
+
+.float-right {
+	float: right;
+}
+
+.both {
+	clear: both;
+}
+
+.transparent {
+	opacity: 0;
+}
+
+.opacity80 {
+	opacity: 0.8;
+}
+
+.inline {
+	display: inline;
+}
+
+.no-margin {
+	margin: 0;
+}
+
+.opacity-transition {
+	-webkit-transition: all 0.5s ease-in-out;
+	-moz-transition: all 1s ease-in-out;
+	-ms-transition: all 1s ease-in-out;
+	-o-transition: all 1s ease-in-out;
+	transition: all 0.5s ease-in-out;
+}
+
+ul#album-list .tools span.delete-button {
+	background: no-repeat url('../img/google-icons.png') -30px -98px;
+	height: 16px;
+	top: 2px;
+	width: 16px;
+	display: block;
+}		
+
+
 
