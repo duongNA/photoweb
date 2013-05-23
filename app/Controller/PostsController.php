@@ -4,7 +4,7 @@ class PostsController extends AppController{
 
 	public function beforeFilter() {
 		parent::beforeFilter();
-		$this->Auth->allow('browse', 'popular');
+		$this->Auth->allow('browse', 'popular', 'search');
 
 		$album = $this->Post->Album->find('list', array(
 				'conditions' => array(
@@ -320,5 +320,33 @@ class PostsController extends AppController{
 
 		$this->paginate = $pagination;
 		$this->set('posts', $this->paginate('Post'));
+	}
+	
+	public function search() {
+		$keyword = '';
+		if (!empty($this->request->query['keyword'])) {
+			$keyword = $this->request->query['keyword'];			
+		}
+		
+		/* $pagination = array(
+			'conditions' => array(
+					'Post.status' => 1,
+					'Post.title LIKE' => '%' . $keyword . '%', 
+			),
+			'limit' => 20,
+			'order' => array('Post.created' => 'DESC')
+		); 
+		$this->paginate = $pagination;
+		$this->set('posts', $this->paginate()); */
+
+		
+		$posts = $this->Post->find('all', array(
+					'conditions' => array(
+						'Post.status' => 1,
+						'Post.title LIKE' => '%' . $keyword . '%'),
+					'limit' => 20,
+					'order' => array('Post.created' => 'DESC')));
+		$this->set('posts', $posts);
+		$this->set('keyword', $keyword);
 	}
 }

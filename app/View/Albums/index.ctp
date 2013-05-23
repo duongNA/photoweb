@@ -27,6 +27,7 @@
 
 <ul id="album-list">
 	<?php foreach($albums as $album) :?>
+		<?php if (!empty($album['IncludePost'][0])): ?>
 		<li class="meta-target">
 			<a href="<?php echo $this->Html->url(array('controller' => 'albums', 'action' =>'view', $album['Album']['id'])); ?>" title="View album">
 				<?php echo $this->Html->image('/files/post/image/' . $album['IncludePost'][0]['image_dir'].'/' . $album['IncludePost'][0]['image']); ?>
@@ -34,7 +35,7 @@
 			<div class="meta transparent opacity-transition">
 				<?php if($album['Album']['user_id'] == $user['id']) :?>
 				<div class="tools float-right">
-					<a href="<?php $this->Html->url(array('controller' => 'albums', 'action' => 'edit', $album['Album']['id'])); ?>" title="Edit">
+					<a href="<?php echo $this->Html->url(array('controller' => 'albums', 'action' => 'edit', $album['Album']['id'])); ?>" title="Edit">
 						<span class="edit-button"></span>
 					</a>
 					<form class="form-album-delete inline no-margin" action="<?php echo $this->Html->url(array('controller' => 'albums', 'action' => 'delete', $album['Album']['id'])); ?>" method="post">
@@ -53,6 +54,7 @@
 				<?php endif;?>
 			</div>
 		</li>
+		<?php endif;?>
 	<?php endforeach; ?>
 
 </ul>

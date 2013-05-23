@@ -499,10 +499,10 @@ label {
 
 input,textarea {
 	clear: both;
-	font-size: 140%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
+	font-size: 100%;
 	padding: 1%;
-	width: 98%;
+	font-size: 140%;
+	width: 95%;
 }
 
 select {
@@ -1613,3 +1613,72 @@ ul#album-post-list .tools span.delete-button {
 	display: block;
 }
 
+.viewed {
+	font-size: 11px;	
+}
+
+.viewed span {
+	font-weight: bold;
+}
+
+/* post search */
+ul#post-search-result {
+	display: inline-block;
+}
+
+ul#post-search-result li {
+	list-style: none;
+	display: block;
+	float: left;
+	width: 215px;
+	height: auto;
+	overflow: hidden;
+	margin-right: 8px;
+	margin-left: 0px;
+	margin-bottom: 20px;
+	position: relative;	
+}
+
+.image-post-search {
+	width: 215px;
+	height: 150px;
+	overflow: hidden;
+}
+
+.image-post-search img {
+	min-width: 215px;
+	min-height: 150px;
+}
+
+ul#post-search-result li .field {
+	font-weight: bold;
+}
+
+ul#post-search-result li a {
+	color: black;
+	font-weight: normal;
+}
+
+ul#post-search-result li a:hover {
+	text-decoration: underline;
+}
+
+.short {
+	width: 250px;
+	font-size: 100%;	
+}
+
+.search-result {
+	margin-top: 20px;
+}
+
+#nav_search {
+	margin-right: 0px;
+	clear: none;
+	width: auto;	
+}
+
+.view-album {
+	float: right;
+	padding-right: 20px;	
+}

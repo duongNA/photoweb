@@ -80,10 +80,13 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 					</a>
 				</li>
 				<li class="search-button">
+					<form action="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'search')); ?>" method="get" id="nav_search">
 					<a href="#">
 						<span></span> 
-						<input type="text" name="seachKey" autocomplete="off" placeholder="Search">
+							<input type="text" name="keyword" autocomplete="off" placeholder="Search">
+							<input type="submit" value="Search" style="display: none">
 					</a>
+					</form>
 				</li>
 
 				<li class="power">

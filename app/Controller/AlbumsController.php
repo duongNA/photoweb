@@ -12,7 +12,10 @@ class AlbumsController extends AppController{
 			$albumId = $this->request->params['pass'][0];
 			if ($this->Album->isOwnedBy($albumId, $user['id'])) {
 				return true;
+			} else {
+				return true;
 			}
+			
 		}
 
 		return parent::isAuthorized($user);

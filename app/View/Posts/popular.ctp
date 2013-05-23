@@ -37,6 +37,9 @@
 						<?php echo $this->Html->link($post['PostOwner']['username'], array('controller' => 'users', 'action' => 'view', $post['PostOwner']['id'])); ?>
 					</span>
 				</div>
+				<div class="viewed">
+					<span>viewed:</span> <?php echo $post['Post']['viewed'];?>
+				</div>
 			</div>
 		</div>
 	</div>

@@ -31,6 +31,11 @@
 </div>
 
 <div class="post-content">
+	<div class="view-album">
+		<a href="<?php echo $this->Html->url(array('controller' => 'albums', 'action' => 'view', $post['Album']['id'])); ?>">
+			View album
+		</a>
+	</div>
 	<h2><?php echo $post['Post']['title']; ?></h2>
 	<div id="post-action">
 		<div id="facebook-like">
