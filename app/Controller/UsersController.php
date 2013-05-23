@@ -102,7 +102,7 @@ class UsersController extends AppController{
     }
 
     // If user is exists the set it to $user variable
-    $this->set('user',$this->User->read(null,$id));
+    $this->set('userTmp',$this->User->read(null,$id));
 
   }
 

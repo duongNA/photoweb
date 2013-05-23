@@ -67,6 +67,11 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 						<b>Photos</b>
 					</a>
 				</li>
+				<?php if ($this->Session->check('Auth.User')): ?>
+					<li class="avatar">
+						
+					</li>
+				<?php endif;?>
 				<li class="new">
 					<a href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'browse')); ?>">
 						<span></span>

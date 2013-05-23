@@ -3,26 +3,26 @@
 <div id="user-information">
 <div class="brief">
   
-  <div id="avatar"><?php echo $this->Html->image("/files/user/avatar/".$user['User']['avatar_dir']."/".$user['User']['avatar']);?></div>
+  <div id="avatar"><?php echo $this->Html->image("/files/user/avatar/".$userTmp['User']['avatar_dir']."/".$userTmp['User']['avatar']);?></div>
 
-  <div id="user-name"><?php echo $user['User']['username']?></div>
+  <div id="user-name"><?php echo $userTmp['User']['username']?></div>
   
   <div class="info">
-    <?php  echo "Joined date: "; echo $user['User']['created'];?>
+    <?php  echo "Joined date: "; echo $userTmp['User']['created'];?>
   </div>
   <div class="info">
-    <?php  echo "Posts: ".count($user['Post'])."<br>";?>
+    <?php  echo "Posts: ".count($userTmp['Post'])."<br>";?>
   </div>
   <div class="info">
-    <?php  echo "Albums: ".count($user['Album'])."<br>";?>
+    <?php  echo "Albums: ".count($userTmp['Album'])."<br>";?>
   </div>
   <?php
-  if($this->Session->read('Auth.User.id')==$user['User']['id'] || $this->Session->read('Auth.User.role')=='admin')
-    echo "<br>".$this->Html->link("Edit profile",array('controller'=>'users',"action"=>'edit',$user['User']['id']))."<br>";
-    if($this->Session->read('Auth.User.id')==$user['User']['id'] || $this->Session->read('Auth.User.role')=='admin')
+  if($this->Session->read('Auth.User.id')==$userTmp['User']['id'] || $this->Session->read('Auth.User.role')=='admin')
+    echo "<br>".$this->Html->link("Edit profile",array('controller'=>'users',"action"=>'edit',$userTmp['User']['id']))."<br>";
+    if($this->Session->read('Auth.User.id')==$userTmp['User']['id'] || $this->Session->read('Auth.User.role')=='admin')
       {
-        // echo $this->Html->link("Change password",array('controller'=>'users',"action"=>'changepass',$user['User']['id']))."<br>";
-        // echo $this->Html->link("Login history",array('controller'=>'users','action'=>'history',$user['User']['id']));
+        // echo $this->Html->link("Change password",array('controller'=>'users',"action"=>'changepass',$userTmp['User']['id']))."<br>";
+        // echo $this->Html->link("Login history",array('controller'=>'users','action'=>'history',$userTmp['User']['id']));
       }?>
   <br><br>
 </div>
@@ -36,7 +36,7 @@
 <div id="tabs-1">
   <div class="album">
     <ul>
-    <?php foreach ($user['Album'] as $album) :
+    <?php foreach ($userTmp['Album'] as $album) :
       if($album['status'] == 1)
         echo "<li>".$this->Html->link($album['title'],array('controller'=>'albums','action'=>'view',$album['id']))."</li>";
      endforeach ?>
@@ -46,14 +46,17 @@
 
 <div id="tabs-2">
   <?php
-  if($this->Session->read('Auth.User.id')===$user['User']['id'])
+  if($this->Session->read('Auth.User.id')===$userTmp['User']['id'])
     echo $this->Html->link('Create new post',array('controller'=>'posts','action'=>'add'));?>
   <div class="post">
     <ul>
-      <?php foreach ($user['Post'] as $post) :
-        if($post['status'] == 1)
-         echo "<li>".$this->Html->link( $post['title'], array ('controller'=>'posts','action'=>'view',$post['id']))."</li>";
-      endforeach?>
+      <?php foreach ($userTmp['Post'] as $post) :?>
+        <?php if($post['status'] == 1): ?>
+        	 <li>
+        	 	<?php echo $this->Html->link( $post['title'], array ('controller'=>'posts','action'=>'view',$post['id'])) ?>
+       	 	</li>
+      	<?php endif;?>
+      <?php endforeach;?>
     </ul>
   </div>
 </div>
