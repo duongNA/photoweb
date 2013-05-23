@@ -1,3 +1,26 @@
+<script type="text/javascript">
+	$(function(){
+		$('.post-delete-button').click(function(e) {
+			e.preventDefault();
+			var $form = $(this).closest('.form-post-delete');
+			var $liPost = $(this).closest('li');
+
+			var successFunc = function() {
+				$liPost.remove();
+			}
+			if (confirm('Do you want to delete the post?')) {
+				$.ajax({
+					type: 'POST',
+					url: $form.attr('action'),
+					data: $form.serialize(),
+					success: successFunc
+				});
+			}
+		});		
+	});
+
+</script>
+
 <div id="post-sidebar">
 	<!-- Here is region to populate all post in the same album -->
 	<div class="owner">
@@ -17,12 +40,14 @@
 	<div class="post-related">
 		<h3>Other related albums</h3>
 		<ul>
-			<?php foreach ($related as $relatedPost): ?>
+			<?php foreach ($relatedAlbums as $relatedAlbum): ?>
+				<?php if (!empty($relatedAlbum['IncludePost'][0])):?>
 				<li>
-					<a href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'view', $relatedPost['Post']['id'])); ?>" title="<?php echo $relatedPost['Post']['title']; ?>"> 
-						<?php echo $this->Html->image('/files/post/image/'.$relatedPost['Post']['image_dir'].'/'.$relatedPost['Post']['image']); ?>
+					<a href="<?php echo $this->Html->url(array('controller' => 'albums', 'action' => 'view', $relatedAlbum['Album']['id'])); ?>" title="<?php echo $relatedAlbum['Album']['title']; ?>">
+						<?php echo $this->Html->image('/files/post/image/'.$relatedAlbum['IncludePost'][0]['image_dir'].'/'.$relatedAlbum['IncludePost'][0]['image']); ?>
 					</a>
-			</li>
+				</li>
+				<?php endif;?>
 			<?php endforeach; ?>
 		</ul>
 	</div>
@@ -47,23 +72,23 @@
 		
 	</div>
 
-	<ul id="post-list">
+	<ul id="album-post-list">
 		<?php foreach($album['IncludePost'] as $post) :?>
 		<li class="meta-target"><?php echo $this->Html->image('/files/post/image/' . $post['image_dir']. '/' . $post['image']); ?>
 			<div class="meta transparent opacity-transition">
-				<?php if($album['Album']['id'] == $user['id']) :?>
+				<?php if($album['Album']['user_id'] == $user['id']) :?>
 				<div class="tools float-right">
 					<a
-						href="<?php $this->Html->url(array('controller' => 'albums', 'action' => 'edit', $album['Album']['id'])); ?>"
+						href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'edit', $post['id'])); ?>"
 						title="Edit"> <span class="edit-button"></span>
 					</a>
-					<form class="form-album-delete inline no-margin"
-						action="<?php echo $this->Html->url(array('controller' => 'albums', 'action' => 'delete', $album['Album']['id'])); ?>"
+					<form class="form-post-delete inline no-margin"
+						action="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'delete', $post['id'])); ?>"
 						method="post">
 						<input type="hidden" name="id"
-							value="<?php echo $album['Album']['id']; ?>"> <input
+							value="<?php echo $post['id']; ?>"> <input
 							type="hidden" name="_method" value="POST"> <a href="#"
-							title="Delete" class="album-delete-button"> <span
+							title="Delete" class="post-delete-button"> <span
 							class="delete-button"></span>
 						</a>
 					</form>
@@ -71,13 +96,13 @@
 				<?php endif;?>
 				<div class="title">
 					<a
-						href="<?php echo $this->Html->url(array('controller' => 'albums', 'action' =>'view', $album['Album']['id'])); ?>"
-						title="View album"> <?php echo $album['Album']['title']; ?>
+						href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' =>'view', $post['id'])); ?>"
+						title="View post"> <?php echo $post['title']; ?>
 					</a>
 				</div>
 				<div class="owner-block">
-					<a>
-						owner					
+					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'view', $album['Album']['user_id'])); ?>">
+						<?php echo $album['User']['username']; ?>						
 					</a>
 				</div>
 			</div>

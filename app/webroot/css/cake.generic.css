@@ -1556,7 +1556,60 @@ ul#album-list .tools span.delete-button {
 	top: 2px;
 	width: 16px;
 	display: block;
-}		
+}
 
+/* posts of album */
 
+/** album list **/
+ul#album-post-list {
+	margin: 10px 0px 10px 0px;
+	display: inline-block;
+}
+
+ul#album-post-list li {
+	list-style: none;
+	display: block;
+	float: left;
+	width: 180px;
+	height: 160px;
+	overflow: hidden;
+	margin-right: 8px;
+	margin-left: 0px;
+	margin-bottom: 8px;
+	position: relative;
+}
+
+/*
+ul#album-post-list div.title {
+	position: absolute;
+	font-weight: bold;
+	color: white;
+	top: 10px;
+	left: 10px;
+} */
+
+ul#album-post-list li img {
+	min-width: 215px;
+	min-height: 160px;	
+}
+
+ul#album-post-list .tools a {
+	display: inline-block;	
+}
+
+ul#album-post-list .tools span.edit-button {
+	display: block;
+	background: no-repeat url('../img/google-icons.png') -86px -130px;
+	height: 17px;
+	top: 4px;
+	width: 20px;
+}
+
+ul#album-post-list .tools span.delete-button {
+	background: no-repeat url('../img/google-icons.png') -30px -98px;
+	height: 16px;
+	top: 2px;
+	width: 16px;
+	display: block;
+}
 

@@ -39,7 +39,7 @@ class PostsController extends AppController{
 		}
 		return parent::isAuthorized($user);
 	}
-
+	
 	/**
 	 * This is default action be executed when user visit website
 	 * View top 10 newest post on the website

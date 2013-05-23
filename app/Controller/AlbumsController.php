@@ -48,9 +48,15 @@ class AlbumsController extends AppController{
 		if(!$album){
 			throw new NotFoundException(__('Invalid album'));
 		}
+		
+		$relatedAlbums = $this->Album->find('all', array(
+					'conditions' => array(
+							'Album.status' => 1,
+					)
+				));
 
 		$this->set('album',$album);
-
+		$this->set('relatedAlbums', $relatedAlbums);
 	}
 
 	/**

@@ -2,12 +2,19 @@
 	$(function(){
 		$('.album-delete-button').click(function(e) {
 			e.preventDefault();
-			var $form = $(this).closest('.form-album-delete');
+			var $form = $(this).closest('.form-post-delete');
+			var $liAlbum = $(this).closest('li');
+
+			var successFunc = function() {
+				$liAlbum.remove();
+			}
+			
 			if (confirm('Do you want to delete the album?')) {
 				$.ajax({
 					type: 'POST',
 					url: $form.attr('action'),
 					data: $form.serialize(),
+					success: successFunc
 				});
 			}
 		});		
@@ -25,6 +32,7 @@
 				<?php echo $this->Html->image('/files/post/image/' . $album['IncludePost'][0]['image_dir'].'/' . $album['IncludePost'][0]['image']); ?>
 			</a>
 			<div class="meta transparent opacity-transition">
+				<?php if($album['Album']['user_id'] == $user['id']) :?>
 				<div class="tools float-right">
 					<a href="<?php $this->Html->url(array('controller' => 'albums', 'action' => 'edit', $album['Album']['id'])); ?>" title="Edit">
 						<span class="edit-button"></span>
@@ -42,6 +50,7 @@
 						<?php echo $album['Album']['title']; ?>
 					</a>
 				</div>
+				<?php endif;?>
 			</div>
 		</li>
 	<?php endforeach; ?>
