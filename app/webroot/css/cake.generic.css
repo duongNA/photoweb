@@ -181,6 +181,48 @@ p {
 	background: no-repeat url('../img/icons.png') -50px -150px;
 }
 
+/* add post */
+#header li.add-post span {
+	background: no-repeat url('../img/icons.png') 0px -850px;
+}
+#header li.add-post a:hover span {
+	background: no-repeat url('../img/icons.png') -50px -850px;
+}
+
+/* my album */
+#header li.my-album span {
+	background: no-repeat url('../img/icons.png') 0px -300px;
+}
+#header li.my-album a:hover span {
+	background: no-repeat url('../img/icons.png') -50px -300px;
+}
+
+/* my posts */
+#header li.my-post span {
+	background: no-repeat url('../img/icons.png') 0px -750px;
+}
+#header li.my-post a:hover span {
+	background: no-repeat url('../img/icons.png') -50px -750px;
+}
+
+/* manage user */
+#header li.manage-user span {
+	background: no-repeat url('../img/icons.png') 0px -600px;
+}
+#header li.manage-user a:hover span {
+	background: no-repeat url('../img/icons.png') -50px -600px;
+}
+
+/* manage post */
+#header li.manage-posts span {
+	background: no-repeat url('../img/icons.png') 0px -800px;
+}
+#header li.manage-posts a:hover span {
+	background: no-repeat url('../img/icons.png') -50px -800px;
+}
+
+
+
 /* search-button */
 #header li.search-button span {
 	background: no-repeat url('../img/icons.png') 0px -350px;
@@ -254,7 +296,7 @@ p {
 }
 
 input.medium {
-	width: 400px;
+	width: 256px;
 }
 
 #footer {
@@ -1084,7 +1126,7 @@ div .fb-login{
 }
 
 #user-information{
-	margin: 0px 50px 0px 50px;
+	margin: 0;
 }
 
 #user-information #avatar img {
@@ -1093,15 +1135,10 @@ div .fb-login{
 }
 
 #user-information .brief {
-	border: 1px solid black;
-	border-radius: 4px;
 	float: left;
 	overflow: auto;
-	height: 350px;
-	padding-left: 20px;
-	padding-top: 25px;
-	padding-right: 20px;
-	width: 20%;
+	padding: 10px;
+	width: 250px;
 }
 
 #user-information .brief .info{
@@ -1116,6 +1153,17 @@ div .fb-login{
 	font-size: 20px;
 	margin-bottom: 10px;
 	padding: 10px 10px 10px 0px;
+}
+
+#tabs-1, #tabs-2 {
+	border: 1px solid black;
+	min-height: 600px;	
+}
+
+#user-information #avatar {
+	width: 150px;
+	height: 150px;
+	overflow: hide;
 }
 
 #user-information #tabs {
@@ -1211,9 +1259,13 @@ div .fb-login{
 	margin-bottom: 20px;
 }
 
+.post-content .post-image img {
+	max-width: 590px;
+}
+
 div.post{
-	margin-left: 140px;
-	width: 60%;
+	/* margin-left: 140px;
+	width: 60%; */
 }
 
 div.post .post-image{
@@ -1681,4 +1733,8 @@ ul#post-search-result li a:hover {
 .view-album {
 	float: right;
 	padding-right: 20px;	
+}
+
+.avatar-bound img {
+	margin-left: 10px;
 }

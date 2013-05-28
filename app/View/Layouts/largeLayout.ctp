@@ -67,6 +67,37 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 						<b>Photos</b>
 					</a>
 				</li>
+				<li class="avatar">
+					<?php $id = $this->Session->read('Auth.User.id');?>
+					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'view', $id)); ?>">
+						<span class="avatar-bound">
+							<?php $avatar_name = $this->Session->read('Auth.User.avatar'); ?>
+							<?php $avatar_dir = $this->Session->read('Auth.User.avatar_dir');?>
+							<?php echo $this->Html->image("/files/user/avatar/" . $avatar_dir . "/" . $avatar_name, array('width' => '30px', 'height' => '30px')); ?>
+						</span>
+						<b><?php echo $this->Session->read('Auth.User.username'); ?></b>
+					</a>
+				</li>
+				<li class="add-post">
+					<a href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'add'));?>">
+						<span></span>
+						<b>Add post</b>
+					</a>
+				</li>
+				<li class="my-album">
+					<a href="<?php echo $this->Html->url(array('controller' => 'albums', 'action' => 'index', $id));?>">
+						<span></span>
+						<b>My Albums</b>
+					</a>
+				</li>
+				<li class="my-post">
+					<a href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'index', $id));?>">
+						<span></span>
+						<b>My Posts</b>
+					</a>
+				</li>
+
+
 				<li class="new">
 					<a href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'browse')); ?>">
 						<span></span>
@@ -79,13 +110,16 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 						<b>Popular</b>
 					</a>
 				</li>
+
 				<li class="search-button">
+					<form action="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'search')); ?>" method="get" id="nav_search">
 					<a href="#">
 						<span></span> 
-						<input type="text" name="seachKey" autocomplete="off" placeholder="Search">
+							<input type="text" name="keyword" autocomplete="off" placeholder="Search">
+							<input type="submit" value="Search" style="display: none">
 					</a>
+					</form>
 				</li>
-
 				<li class="power">
 					<?php if ($this->Session->check('Auth.User')): ?>
 						<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'login')); ?>">
@@ -100,12 +134,20 @@ echo $this->Html->css('fancybox/source/jquery.fancybox');
 					<?php endif; ?>
 				</li>
 
-				<li class="more">
-					<a href="#">
+				<?php if($this->Session->read('Auth.User.role') == 'admin'): ?>
+				<li class="manage-user">
+					<a href="<?php echo $this->Html->url(array('controller' => 'users', 'action' => 'manage')); ?>">
 						<span></span>
-						<b>More</b>
+						<b>Manage users</b>					
 					</a>
 				</li>
+				<li class="manage-posts">
+					<a href="<?php echo $this->Html->url(array('controller' => 'posts', 'action' => 'manage'));?>">
+						<span></span>
+						<b>Manage posts</b>					
+					</a>
+				</li>
+				<?php endif;?>
 			</ul>
 		</div>
 		<div id="header-space"></div>

@@ -49,7 +49,7 @@ class PostsController extends AppController{
 	public function index(){
 		$this->layout = "largeLayout";
 		$this->paginate = array (
-				'conditions' => array('Post.status' => 1),
+				'conditions' => array('Post.status' => 1, 'Post.user_id' => $this->Auth->user('id')),
 				'limit' => 20,
 				'order' => array('Post.created'=>'DESC'),
 				'user_id' => $this->Auth->user('id')

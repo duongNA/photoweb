@@ -10,12 +10,18 @@
   <div class="info">
     <?php  echo "Joined date: "; echo $userTmp['User']['created'];?>
   </div>
-  <div class="info">
-    <?php  echo "Posts: ".count($userTmp['Post'])."<br>";?>
-  </div>
-  <div class="info">
-    <?php  echo "Albums: ".count($userTmp['Album'])."<br>";?>
-  </div>
+  <?php if(!empty($userTmp['Post'])):?>
+	  <div class="info">
+    	<?php  echo "Posts: ".count($userTmp['Post'])."<br>";?>
+  	</div>
+   <?php endif;?>
+   
+   <?php if(!empty($userTmp['Album'])):?>
+  	<div class="info">
+	    <?php  echo "Albums: ".count($userTmp['Album'])."<br>";?>
+  	</div>
+	<?php endif;?>
+  	
   <?php
   if($this->Session->read('Auth.User.id')==$userTmp['User']['id'] || $this->Session->read('Auth.User.role')=='admin')
     echo "<br>".$this->Html->link("Edit profile",array('controller'=>'users',"action"=>'edit',$userTmp['User']['id']))."<br>";
@@ -36,10 +42,14 @@
 <div id="tabs-1">
   <div class="album">
     <ul>
-    <?php foreach ($userTmp['Album'] as $album) :
-      if($album['status'] == 1)
-        echo "<li>".$this->Html->link($album['title'],array('controller'=>'albums','action'=>'view',$album['id']))."</li>";
-     endforeach ?>
+      
+    <?php 
+    if(!empty($userTmp['Album'])) {
+    	foreach ($userTmp['Album'] as $album)
+      	if($album['status'] == 1)
+	        echo "<li>".$this->Html->link($album['title'],array('controller'=>'albums','action'=>'view',$album['id']))."</li>";
+    }
+     ?>
     </ul>
   </div>
 </div>
@@ -48,6 +58,7 @@
   <?php
   if($this->Session->read('Auth.User.id')===$userTmp['User']['id'])
     echo $this->Html->link('Create new post',array('controller'=>'posts','action'=>'add'));?>
+    <?php if(!empty($userTmp['Post'])):?>
   <div class="post">
     <ul>
       <?php foreach ($userTmp['Post'] as $post) :?>
@@ -59,6 +70,7 @@
       <?php endforeach;?>
     </ul>
   </div>
+  <?php endif;?>
 </div>
 
 </div>
