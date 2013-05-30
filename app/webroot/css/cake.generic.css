@@ -1549,8 +1549,10 @@ ul#album-list div.album-title {
 }
 
 ul#album-list li img {
+	max-width: 215px;
+	max-height: 160px;
 	min-width: 215px;
-	min-height: 160px;	
+	min-height: 160px;
 }
 
 ul#album-list .tools a {
@@ -1643,6 +1645,8 @@ ul#album-post-list div.title {
 ul#album-post-list li img {
 	min-width: 215px;
 	min-height: 160px;	
+	max-width: 215px;
+	max-height: 160px;
 }
 
 ul#album-post-list .tools a {
@@ -1700,6 +1704,8 @@ ul#post-search-result li {
 .image-post-search img {
 	min-width: 215px;
 	min-height: 150px;
+	max-width: 215px;
+	max-height: 150px;
 }
 
 ul#post-search-result li .field {
